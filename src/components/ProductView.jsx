@@ -9,7 +9,7 @@ function ProductDetails() {
 
   useEffect(() => {
     axios
-      .get(`https://api.unsplash.com/photos/random?client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`)
+      .get(`https://api.unsplash.com/photos/${params.id}?client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`)
       .then((response) => {
         setProductData(response.data);
         console.log(response.data);

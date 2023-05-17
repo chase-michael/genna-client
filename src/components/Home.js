@@ -9,15 +9,15 @@ const Home = () => {
   const getData = () => {
     axios
       .get(
-        `https://api.unsplash.com/photos/?client_id=${process.env.REACT_APP_API_KEY}`
+        `https://api.unsplash.com/photos/?client_id=${process.env.REACT_APP_UNSPLASH_ACCESS_KEY}`
       )
       .then((res) => {
         setData(res.data);
       });
   };
-  // useEffect(() => {
-  //   getData();
-  // }, []);
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <main>

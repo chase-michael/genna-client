@@ -9,18 +9,10 @@ import { Link } from "react-router-dom";
 
 import axios from "axios";
 const Navbar = () => {
-  const [isActive, setIsActive] = useState(false); // toggle search bar icon
   const [inputValue, setInputValue] = useState("");
   const [toggle, setToggle] = useState(true);
   const [data, setData] = useState([]);
   const toggVisibility = toggle ? "visible" : "hidden";
-
-  // create nav with logo search bar and cart DONE
-  // cart is displayed dynamically based on length on items if >0 then display else : null
-  // search bar should slide from the right side on mobile view DONE
-  // search bar should look for a specific item and display them underneeth the search bar
-  // search bar should have close icon that slides it back to a regular icon DONE
-  // selecting an object should send to the product page
 
   useEffect(() => {
     axios
