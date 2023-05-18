@@ -7,7 +7,7 @@ nav {
   margin: 0 auto;
   width: 100%;
   padding: 10px 0;
-  background-color: rgb(255, 255, 255);
+  background-color: #f6f6f6;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -16,7 +16,7 @@ nav {
   left: 0;
   z-index: 1;
   border-top: none;
-  border-bottom: solid 1px rgb(226, 226, 226);
+
 }
 .logo {
   font-family: "open sans";
@@ -25,9 +25,8 @@ nav {
   align-items: center;
   gap: 10px;
   margin-left: 20px;
- 
 }
-.cart{
+.cart {
   margin-right: 20px;
 }
 .logo-img {
@@ -37,128 +36,24 @@ nav {
 .nav-icons {
   font-size: 25px;
 }
-.search-bar {
-  max-width: 70%;
-  position: relative;
-  margin-top: 100px;
-  margin-left: auto;
-  margin-right: auto;
-  z-index: 20;
-}
-
-.search-bar > input {
-  margin: 0 auto;
-  border-radius: 5px;
-  background-color: rgb(255, 255, 255);
-  border: none;
-  text-indent: 10px;
-  z-index: 20;
-  font-size: 17px;
-  width: 100%;
-  padding: 20px 0px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 82, 0.15);
-}
-
-input:focus {
-  outline: none;
-}
-
-.search {
-  font-size: 20px;
-}
-
-.dropdown {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  background-color: #ffffff;
-  height: auto;
-  width: 100%;
-  margin-top: 0;
-  box-shadow: 8px 12px 25px 0 rgba(0, 0, 0, 0.15);
-  border-radius: 0 0 10px 10px;
-  z-index: 40;
-}
-.dropdown-row {
-  min-height: 30px;
-  text-align: start;
-  margin: 2px 0px;
-  text-indent: 30px;
-  cursor: pointer;
-  border: none;
-  font-weight: 500;
-  border-radius: 5px;
-  font-size: small;
-  text-decoration: none;
-  color: black;
-}
-
-.dropdown-row:hover {
-  background-color: rgb(227, 227, 227);
-}
 
 /*responsive*/
 @media only screen and (max-width: 600px) {
-
-
-  .search-bar {
-    max-width: 90%;
-    position: relative;
-    margin-top: 100px;
-    margin-left: auto;
-    margin-right: auto;
-    z-index: 20;
-  }
-  .search-bar input{
-    font-size: small;
-  }
-  .search-bar input:focus {
-    outline: none;
-  }
   .nav-icons {
-  
     gap: 5px;
     color: #000;
     font-size: 25px;
   }
-  .logo{
+  .logo {
     gap: 2px;
-    margin-left: 10px;
-  }
-  .cart{
-    margin-right: 10px;
-  }
+    margin-left: 30px;
 
-  .dropdown {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    background-color: #ffffff;
-    height: auto;
-    max-width: 100%;
-    margin-top: 0px;
-    border: none;
-    border-radius: 0 0 10px 10px;
   }
-  .dropdown-row {
-    height: 30px;
-    text-align: start;
-    margin: 10px 0px;
-    text-indent: 10px;
-    cursor: pointer;
-    border: none;
-    font-weight: 500;
-    border-radius: 5px;
-    font-size: 13px;
-    overflow: scroll;
-    white-space: nowrap;
+  .logo-img{
+    width: 60px;
+    height: 60px;
   }
-  .clear {
-    position: absolute;
-    right: 66px;
-    top: 8px;
-    font-size: 15px;
-    color: rgb(159, 159, 159);
-    cursor: pointer;
+  .cart {
+    margin-right: 10px;
   }
 }
