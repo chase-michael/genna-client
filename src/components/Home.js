@@ -25,7 +25,7 @@ const Home = () => {
   };
   useEffect(() => {
     getData();
-    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth)
+    // Line 44 : the carousel needs to be fixed to stop the left drag dinamically
   }, []);
   
 
@@ -41,7 +41,7 @@ const Home = () => {
       </div>
             {/* images carousel*/}
       <motion.div ref={carousel} className="carousel">
-        <motion.div drag="x" dragConstraints={{right:0, left: -width}} className="inner-carousel">
+        <motion.div  drag="x" dragConstraints={{right:0, left:-642}} className="inner-carousel">
           {data.map((item, index) => (
             <motion.div key={index} className="item">
               <Link to={"/product/" + item.id}>
