@@ -8,8 +8,11 @@ import { BiSearchAlt } from "react-icons/bi";
 import { AiOutlineDownload } from "react-icons/ai";
 import { AiOutlineSmile } from "react-icons/ai";
 import { TfiGallery } from "react-icons/tfi";
-
+import { motion } from "framer-motion";
+import { useRef } from "react";
 const Home = () => {
+  const [width,setWidth] = useState(0)
+  const carousel = useRef()
   const [data, setData] = useState([]);
   const getData = () => {
     axios
@@ -22,7 +25,9 @@ const Home = () => {
   };
   useEffect(() => {
     getData();
+    setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth)
   }, []);
+  
 
   return (
     <main>
@@ -34,19 +39,20 @@ const Home = () => {
         <h4>art</h4>
         <button className="home-btn">View Our Galleries</button>
       </div>
-      {/* images carousel*/ }
-      {/* <div className="main-container">
-        {data.map((item, index) => (
-          <div key={index} className="card">
-            <div className="img-container">
+            {/* images carousel*/}
+      <motion.div ref={carousel} className="carousel">
+        <motion.div drag="x" dragConstraints={{right:0, left: -width}} className="inner-carousel">
+          {data.map((item, index) => (
+            <motion.div key={index} className="item">
               <Link to={"/product/" + item.id}>
                 <img src={item.urls.regular} alt="" loading="lazy" />
               </Link>
-            </div>
-          </div>
-        ))}
-      </div> */}
-          {/* List content what is genna?*/ }
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
+
+      {/* List content what is genna?*/}
       <div className="list-container">
         <h2 className="title">WHAT IS GENNA.COM?</h2>
         <ul>
@@ -93,7 +99,7 @@ const Home = () => {
           </div>
         </div>
       </div>
-          {/* footer*/ }
+      {/* footer*/}
       <footer>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <button className="home-btn">

@@ -1,23 +1,4 @@
 
-.main-container {
-  margin: 0 auto;
-  margin-top: 200px;
-  max-width: 1400px;
-  height: auto;
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 5px;
-  padding: 0.5%;
-}
-
-.card {
-  height: auto;
-  border-radius: 2px;
-}
-
 .img-container {
   height: 300px;
   background-color: #fff;
@@ -37,12 +18,24 @@ img {
   main{
     background-color: #f6f6f6;
   }
-  .main-container {
-    margin: 0 auto;
-    width: 100%;
-    height: auto;
-    padding: 50px 0px;
+  /*carousel*/
+  .item{
+    min-width: 100px;
+    height: 100px;
+    padding: 1px;
   }
+  .item img{
+    width: 100%;
+    height: 100%;
+  }
+  .inner-carousel{
+    display: flex;
+  }
+  .carousel{
+    cursor: grab;
+    overflow: hidden;
+  }
+
   .home-header{
     background-image: linear-gradient(#f6f6f6 , rgb(218, 197, 244));
     margin-top: 80px;
@@ -89,17 +82,7 @@ img {
     color: #7C03E0;
     font-size: larger;
   }
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 5px;
-    padding: 1%;
-    margin: 2%;
-  }
 
-  .card {
-    height: auto;
-  }
 
   .img-container {
     height: 200px;
