@@ -1,30 +1,35 @@
-import React from "react";
+import React, { useState } from "react";
+import "../styles/SearchBar.css";
+
+
 
 const SearchBar = () => {
+  const [inputValue,setInputValue] = useState('')
+  const [isActive,setIsActive] = useState(false)
+  
   return (
     <div className="search-bar">
       <input
-        onClick={() => setToggle(true)}
-        onChange={(e) => setInputValue(e.target.value)}
-        value={inputValue}
+         onChange={(e) => setInputValue(e.target.value)}
+         value={inputValue}
         type="text"
-        placeholder="search anything.."
+        placeholder="Artists, Galleries, Works.."
       />
       {/* {inputValue && (
-          <div onClick={() => setInputValue("")} className="clear">
-            Clear
-          </div>
-        )} */}
-      {/* <div onClick={() => setIsActive(!isActive)}>
-          <div className="search-container">
-            {isActive ? (
-              <AiFillCloseCircle className="search" />
-            ) : (
-              <AiOutlineSearch className="search" />
-            )}
-          </div>
-        </div> */}
-      <div style={{ visibility: toggVisibility }} className="dropdown">
+        <div onClick={() => setInputValue("")} className="clear">
+          Clear
+        </div>
+      )} */}
+      <div onClick={() => setIsActive(!isActive)}>
+        <div className="search-container">
+          {/* {isActive ? (
+            <AiFillCloseCircle className="search" />
+          ) : (
+            <AiOutlineSearch className="search" />
+          )} */}
+        </div>
+      </div>
+      {/* <div style={{ visibility: toggVisibility }} className="dropdown">
         {data
           .filter((item) => {
             const searchTerm = inputValue.toLocaleLowerCase();
@@ -45,7 +50,7 @@ const SearchBar = () => {
               {item.title}
             </Link>
           ))}
-      </div>
+      </div> */}
     </div>
   );
 };

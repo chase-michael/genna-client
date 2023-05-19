@@ -6,7 +6,8 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { FaAmazonPay } from "react-icons/fa";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
-
+import { BiSearchAlt } from "react-icons/bi";
+import Discover from "./Discover";
 import axios from "axios";
 const Navbar = () => {
   const [inputValue, setInputValue] = useState("");
@@ -28,7 +29,10 @@ const Navbar = () => {
   return (
     <header>
       <nav>
-        <Link style={{ textDecoration:'none',color:'rgb(43, 43, 43)'}} to={'/'}>
+        <Link
+          style={{ textDecoration: "none", color: "rgb(43, 43, 43)" }}
+          to={"/"}
+        >
           <div className="logo">
             <div className="logo-img">
               <img src="/genna-logo.png" alt="" />
@@ -36,13 +40,17 @@ const Navbar = () => {
           </div>
         </Link>
         <div className="nav-icons">
-          <Link style={{color: "rgb(43, 43, 43)" }} to={"/sign-in"}>
-            <HiUserCircle className="user nav-icon" />
+          <Link style={{ color: "rgb(43, 43, 43)" }}>
+            <MdOutlineShoppingBag className="user nav-icon" />
           </Link>
-          <MdOutlineShoppingBag className="cart nav-icon" />
+          <Link style={{ color: "rgb(43, 43, 43)" }} to={'/Discover'}>
+            <BiSearchAlt className="user nav-icon" />
+          </Link>
+          <Link style={{ color: "rgb(43, 43, 43)" }} to={'/sign-in'}>
+            <HiUserCircle className="cart nav-icon" />
+          </Link>
         </div>
       </nav>
-      
     </header>
   );
 };

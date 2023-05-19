@@ -4,7 +4,7 @@ import Home from './components/Home';
 import ProductView from './components/ProductView';
 import SignIn from './pages/SignIn';
 import CreateAccount from './pages/CreateAccount';
-
+import Discover from './components/Discover';
 const Pages = () => {
   return (
     <Routes>
@@ -12,6 +12,7 @@ const Pages = () => {
         <Route path='/product/:id' element={<ProductView />}/>
         <Route path='/sign-in' element={<SignIn />}/>
         <Route path='/create-account' element={<CreateAccount />}/>
+        <Route path='/discover' element={<Discover />}/>
     </Routes>
   )
 }

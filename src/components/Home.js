@@ -28,7 +28,7 @@ const Home = () => {
     // Line 44 : the carousel needs to be fixed to stop the left drag dinamically
   }, []);
   
-
+//align text after bullet points
   return (
     <main>
       <div className="home-header">
@@ -61,26 +61,26 @@ const Home = () => {
             <span>
               <TfiGallery className="li-icons" />
             </span>{" "}
-            Make and display your genart in the Gallery
+            Make and display your genart in the Gallery.
           </li>
           <li>
             <span>
               <BiSearchAlt className="li-icons" />
             </span>
-            Browse other people genart
+            Browse other people's genart.
           </li>
           <li>
             <span>
               <AiOutlineDownload className="li-icons" />
             </span>
             Download high quality genart for personal use, like your phone
-            background
+            background.
           </li>
           <li>
             <span>
               <AiOutlineSmile className="li-icons" />
             </span>
-            Befriend a spikey blob, Genna
+            Befriend a spikey blob, Genna.
           </li>
         </ul>
         <button className="home-btn">Start making genart</button>
