@@ -1,4 +1,6 @@
-
+main {
+  background-color: #f1f4fa;
+}
 .img-container {
   height: 300px;
   background-color: #fff;
@@ -12,78 +14,169 @@ img {
   object-fit: cover;
 }
 
+/*carousel*/
+.item {
+  min-width: 300px;
+  height: 150px;
+  padding: 1px;
+  box-shadow: 0 8px 18px 0 rgba(0, 0, 82, 0.15);
+}
+.item img {
+  width: 100%;
+  height: 100%;
+  box-shadow: 0 8px 18px 0 rgba(0, 0, 82, 0.15);
+}
+.inner-carousel {
+  display: flex;
+}
+.carousel {
+  cursor: grab;
+  overflow: hidden;
+}
+
+.home-header {
+  background-image: linear-gradient(#f1f4fa, rgb(218, 197, 244));
+  padding-top: 40px;
+  padding-bottom: 70px;
+  border: none;
+  font-family: "Numans", sans-serif;
+  display: flex;
+  justify-content: space-evenly;
+}
+.home-header h4,
+h6 {
+  font-size: 45px;
+}
+.home-header-img {
+  width: 400px;
+  height: 300px;
+  box-shadow: 0 8px 18px 0 rgba(0, 0, 82, 0.15);
+}
+.home-btn {
+  height: 41px;
+  width: 178px;
+  border-radius: 13px;
+  background-color: #fafafa;
+  border: none;
+  box-shadow: 0px 7px 10px 0px #a9a9a9;
+  font-family: "Numans", sans-serif;
+  margin: 30px 0px;
+}
+.title {
+  font-family: "Nova Mono", "monospace";
+  text-align: center;
+  padding: 20px 0px;
+  font-size: 37px;
+}
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  max-width: 900px;
+  padding-top: 60px;
+  margin: auto;
+  gap: 50px;
+
+}
+.grid-item {
+  display: flex;
+  gap: 5px;
+  font-size: 20px;
+}
+
+.li-icons {
+  color: #7c03e0;
+  font-size: larger;
+}
+
+.img-container {
+  height: 200px;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+footer {
+  background-image: linear-gradient(#f1f4fa, rgb(218, 197, 244));
+  padding: 30px 0px;
+}
+footer ul {
+  padding: 0px 20px;
+}
+footer ul li {
+  list-style-type: none;
+  font-family: "Numans", sans-serif;
+  padding: 3px 0px;
+}
+
 /*responsive home*/
 @media only screen and (max-width: 700px) {
-
-  main{
+  main {
     background-color: #f6f6f6;
   }
   /*carousel*/
-  .item{
+  .item {
     min-width: 100px;
     height: 100px;
     padding: 1px;
   }
-  .item img{
+  .item img {
     width: 100%;
     height: 100%;
   }
-  .inner-carousel{
+  .inner-carousel {
     display: flex;
   }
-  .carousel{
+  .carousel {
     cursor: grab;
     overflow: hidden;
   }
 
-  .home-header{
-    background-image: linear-gradient(#f6f6f6 , rgb(218, 197, 244));
-    margin-top: 80px;
+  .home-header {
+    background-image: linear-gradient(#f6f6f6, rgb(218, 197, 244));
     padding-top: 20px;
-    padding-left: 40px;
+    padding-left: 20px;
+    justify-content: start;
     padding-bottom: 50px;
     font-size: 35px;
     border: none;
-    font-family: 'Numans', sans-serif;
-  
+    font-family: "Numans", sans-serif;
   }
-  .home-btn{
+  .home-btn {
     height: 41px;
     width: 178px;
     border-radius: 13px;
-    background-color: #FAFAFA;
+    background-color: #fafafa;
     border: none;
-    box-shadow:0px 7px 10px 0px #a9a9a9;
-    font-family: 'Numans', sans-serif;
+    box-shadow: 0px 7px 10px 0px #a9a9a9;
+    font-family: "Numans", sans-serif;
     margin: 30px 0px;
   }
-  .title{
-    font-family: 'Nova Mono', 'monospace';
+  .title {
+    font-family: "Nova Mono", "monospace";
     text-align: center;
     padding: 20px 0px;
+    font-size: 29px;
   }
-  .list-container{
-    display: flex;
-    flex-direction: column;
-    padding: 20px 30px;
-    align-items: center
+  .grid-container {
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    width: 80%;
+    gap: 10px;
+    padding-top: 20px;
   }
-  .list-container ul li{
-    font-family: 'Numans', sans-serif;
-    padding: 10px 0px;
-    list-style-type: none;
-    display: flex;
+  .grid-item {
+    align-items: center;
+    font-size: 19px;
   }
-  .tagline{
-    display: flex;
-    
-  }
-  .li-icons{
-    margin-right: 10px;
-    color: #7C03E0;
+  .li-icons {
+    color: #7c03e0;
     font-size: larger;
   }
-
 
   .img-container {
     height: 200px;
@@ -96,16 +189,16 @@ img {
     height: 100%;
     object-fit: cover;
   }
-  footer{
-    background-image: linear-gradient(#f6f6f6 , rgb(218, 197, 244));
+  footer {
+    background-image: linear-gradient(#f6f6f6, rgb(218, 197, 244));
     padding: 30px 0px;
   }
-  footer ul{
-    padding: 0px 20px ;
+  footer ul {
+    padding: 0px 20px;
   }
-  footer ul li{
+  footer ul li {
     list-style-type: none;
-    font-family: 'Numans', sans-serif;
+    font-family: "Numans", sans-serif;
     padding: 3px 0px;
   }
 }
