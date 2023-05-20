@@ -1,48 +1,102 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/authenticate-flow.css';
 import UserInputContext from '../contexts/UserInputContext';
+import { validateSignInInputs } from '../utils/validations/authValidations';
+import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 function SignInForm() {
   const { userInput, setUserInput } = useContext(UserInputContext);
+  const [invalidValues, setInvalidValues] = useState([]);
   const navigate = useNavigate();
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const { email, password } = userInput;
+
+    const result = await validateSignInInputs(email, password);
+    setInvalidValues(result);
+
+    if (result.length == 0) {
+      try {
+        const response = await axios.post('http://localhost:3005/auth/signin', { email, password })
+        const { authToken } = response.data;
+        localStorage.setItem('authToken', authToken);
+        setUserInput({
+          displayName: '',
+          email: '',
+          password: '',
+          profileImage: undefined
+        })
+        navigate('/');
+  
+      } catch (error) {
+        setInvalidValues(error.response.data.errors);
+      }
+    }
+  }
 
   return (
     <div className="authenticate">
+
       <div className="header">
         <img
           className="genna-helper"
-          src={"/genna-logo.png"}
+          src={'/genna-logo.png'}
           alt="Genna"
-          onClick={() => navigate("/")}
+          onClick={() => navigate('/')}
         />
         Sign In
       </div>
+
       <form
         className="form"
+        onSubmit={handleSubmit}
+        noValidate
       >
-        <label htmlFor="email">Email</label>
-        <input
-          type="email"
-          id="email"
-          value={userInput.email}
-          onChange={(e) =>
-            setUserInput({ ...userInput, email: e.target.value })
+
+        <div>
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            id="email"
+            value={userInput.email}
+            onChange={(e) =>
+              setUserInput({ ...userInput, email: e.target.value })
+            }
+            autoComplete="email"
+          />
+          {invalidValues.find(error => error.email) && 
+            <div className="error">
+              <FontAwesomeIcon icon={faExclamationCircle}/>
+              {invalidValues.find(error => error.email).email}
+            </div>
           }
-          required
-        />
-        <label htmlFor="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          value={userInput.password}
-          onChange={(e) =>
-            setUserInput({ ...userInput, password: e.target.value })
+        </div>
+
+        <div>
+          <label htmlFor="password">Password</label>
+          <input
+            type="password"
+            id="password"
+            value={userInput.password}
+            onChange={(e) =>
+              setUserInput({ ...userInput, password: e.target.value })
+            }
+            autoComplete="password"
+          />
+          {invalidValues.find(error => error.password) && 
+            <div className="error">
+              <FontAwesomeIcon icon={faExclamationCircle}/>
+              {invalidValues.find(error => error.password).password}
+            </div>
           }
-          required
-        />
+        </div>
+        
         <Link to="/forgot-password" className="forgot-password-link">
-          Forgot Password
+          Forgot Password?
         </Link>
         <div className="signin-create-row">
           <button type="submit">Sign In</button>

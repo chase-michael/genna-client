@@ -4,7 +4,7 @@ import axios from 'axios';
 import '../styles/authenticate-flow.css';
 import UserInputContext from '../contexts/UserInputContext';
 import ProfilePhotoUploader from './ProfilePhotoUploader';
-import validateSignUpInputs from '../utils/validations/authValidations';
+import { validateSignUpInputs } from '../utils/validations/authValidations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,16 +18,13 @@ function CreateAccountForm() {
     const { displayName, email, password } = userInput;
 
     const result = await validateSignUpInputs(displayName, email, password);
-    console.log(result);
     setInvalidValues(result);
 
     if (result.length == 0) {
       try {
         const response = await axios.post('http://localhost:3005/auth/signup', { displayName, email, password })
-        // const { token } = response.data;
-  
-        // localStorage.setItem('authToken', token);
-        console.log(response.data);
+        const { authToken } = response.data;
+        localStorage.setItem('authToken', authToken);
         setUserInput({
           displayName: '',
           email: '',
@@ -45,15 +42,17 @@ function CreateAccountForm() {
 
   return (
     <div className="authenticate">
+
       <div className="header">
         <img
           className="genna-helper"
-          src={"/genna-logo.png"}
+          src={'/genna-logo.png'}
           alt="Genna"
-          onClick={() => navigate("/")}
+          onClick={() => navigate('/')}
         />
         Create Account
       </div>
+
       <form
         className="form"
         onSubmit={handleSubmit}
@@ -69,7 +68,6 @@ function CreateAccountForm() {
             onChange={(e) => {
               setUserInput({ ...userInput, displayName: e.target.value});
             }}
-            required
           />
           {invalidValues.find(error => error.displayName) ? (
             <div className="error">
@@ -92,8 +90,7 @@ function CreateAccountForm() {
             onChange={(e) =>
               setUserInput({ ...userInput, email: e.target.value })
             }
-            required
-            autoComplete='email'
+            autoComplete="email"
           />
           {invalidValues.find(error => error.email) && 
             <div className="error">
@@ -113,7 +110,7 @@ function CreateAccountForm() {
               setUserInput({ ...userInput, password: e.target.value })
             }
             required
-            autoComplete='password'
+            autoComplete="password"
           />
           {invalidValues.find(error => error.password) && 
             <div className="error">

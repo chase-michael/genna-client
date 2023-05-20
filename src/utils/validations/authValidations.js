@@ -1,6 +1,51 @@
-import axios from "axios";
+import axios from 'axios';
 
-async function validateSignUpInputs(displayName, email, password) {
+export async function validateSignInInputs(email, password) {
+
+    const EMAIL_UNDEFINED = 'Oops, you forgot to enter your email address';
+    const EMAIL_INVALID = 'Provide a valid email address';
+    const PASSWORD_UNDEFINED = 'You forgot your password, silly';
+    const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+    const emailIsValid = (email) => {
+        return EMAIL_REGEX.test(email);
+    }
+
+    let errors = [];
+
+    // send email and password to the sever
+    // if no email exists, return errors
+    // if email exists but password is incorrect, return errors
+    // if it exists and password is right, getJWT and redirect to next page
+
+    if (!email) {
+        errors.push({ email: EMAIL_UNDEFINED });
+    } else {
+        if (!emailIsValid(email)) {
+            errors.push({ email: EMAIL_INVALID });
+        }
+    }
+
+    if (!password) {
+        errors.push({ password: PASSWORD_UNDEFINED })
+    }
+
+    if (errors.find(error => error.email) || errors.find(error => error.password)) {
+        return errors;
+    }
+
+    try {
+        const response = 
+            await axios.post('http://localhost:3005/auth/signin', { email, password });
+
+    } catch (error) {
+        console.log(error);
+    }
+
+    return errors;
+}
+
+export async function validateSignUpInputs(displayName, email, password) {
 
     const DISPLAY_NAME_UNDEFINED = 'Choose a display name';
     const DISPLAY_NAME_INVALID_LENGTH = 'Display name must be between 3-25 characters';
@@ -66,5 +111,3 @@ async function validateSignUpInputs(displayName, email, password) {
 
     return errors;
 }
-
-export default validateSignUpInputs;
