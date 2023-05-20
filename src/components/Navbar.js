@@ -6,7 +6,8 @@ import { AiOutlineSearch } from "react-icons/ai";
 import { FaAmazonPay } from "react-icons/fa";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { Link } from "react-router-dom";
-
+import { BiSearchAlt } from "react-icons/bi";
+import Discover from "./Discover";
 import axios from "axios";
 const Navbar = () => {
   const [inputValue, setInputValue] = useState("");
@@ -28,66 +29,28 @@ const Navbar = () => {
   return (
     <header>
       <nav>
-        <Link style={{ textDecoration:'none',color:'rgb(43, 43, 43)'}} to={'/'}>
-          <div  className="logo">
+        <Link
+          style={{ textDecoration: "none", color: "rgb(43, 43, 43)" }}
+          to={"/"}
+        >
+          <div className="logo">
             <div className="logo-img">
               <img src="/genna-logo.png" alt="" />
             </div>
-            <strong style={{fontFamily:'cursive'}} >GENNA</strong>
           </div>
         </Link>
         <div className="nav-icons">
-          <Link style={{color: "rgb(43, 43, 43)" }} to={"/sign-in"}>
-            <HiUserCircle className="user nav-icon" />
+          <Link style={{ color: "rgb(43, 43, 43)" }}>
+            <MdOutlineShoppingBag className="user nav-icon" />
           </Link>
-          <MdOutlineShoppingBag className="cart nav-icon" />
+          <Link style={{ color: "rgb(43, 43, 43)" }} to={'/Discover'}>
+            <BiSearchAlt className="user nav-icon" />
+          </Link>
+          <Link style={{ color: "rgb(43, 43, 43)" }} to={'/sign-in'}>
+            <HiUserCircle className="cart nav-icon" />
+          </Link>
         </div>
       </nav>
-      <div className="search-bar">
-        <input
-          onClick={() => setToggle(true)}
-          onChange={(e) => setInputValue(e.target.value)}
-          value={inputValue}
-          type="text"
-          placeholder="search anything.."
-        />
-        {/* {inputValue && (
-          <div onClick={() => setInputValue("")} className="clear">
-            Clear
-          </div>
-        )} */}
-        {/* <div onClick={() => setIsActive(!isActive)}>
-          <div className="search-container">
-            {isActive ? (
-              <AiFillCloseCircle className="search" />
-            ) : (
-              <AiOutlineSearch className="search" />
-            )}
-          </div>
-        </div> */}
-        <div style={{ visibility: toggVisibility }} className="dropdown">
-          {data
-            .filter((item) => {
-              const searchTerm = inputValue.toLocaleLowerCase();
-              const product = item.title.toLocaleLowerCase();
-              // if searchTermi exists and it includes the value return something else return nothing
-              if (searchTerm && product.includes(searchTerm)) {
-                return searchTerm;
-              }
-              // return searchTerm && product.includes(searchTerm); shorter version
-            })
-            .map((item, index) => (
-              <Link
-                to={"/product/" + item.id}
-                onClick={() => onSearch(item.title)}
-                key={index}
-                className="dropdown-row"
-              >
-                {item.title}
-              </Link>
-            ))}
-        </div>
-      </div>
     </header>
   );
 };
