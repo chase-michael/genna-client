@@ -11,8 +11,8 @@ import { TfiGallery } from "react-icons/tfi";
 import { motion } from "framer-motion";
 import { useRef } from "react";
 const Home = () => {
-  const [width,setWidth] = useState(0)
-  const carousel = useRef()
+  const [width, setWidth] = useState(0);
+  const carousel = useRef();
   const [data, setData] = useState([]);
   const getData = () => {
     axios
@@ -27,8 +27,8 @@ const Home = () => {
     getData();
     // Line 44 : the carousel needs to be fixed to stop the left drag dinamically
   }, []);
-  
-//align text after bullet points
+
+  //align text after bullet points
   return (
     <main>
       <div className="home-header">
@@ -39,9 +39,13 @@ const Home = () => {
         <h4>art</h4>
         <button className="home-btn">View Our Galleries</button>
       </div>
-            {/* images carousel*/}
+      {/* images carousel*/}
       <motion.div ref={carousel} className="carousel">
-        <motion.div  drag="x" dragConstraints={{right:0, left:-642}} className="inner-carousel">
+        <motion.div
+          drag="x"
+          dragConstraints={{ right: 0, left: -642 }}
+          className="inner-carousel"
+        >
           {data.map((item, index) => (
             <motion.div key={index} className="item">
               <Link to={"/product/" + item.id}>

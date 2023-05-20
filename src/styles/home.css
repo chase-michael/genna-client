@@ -72,6 +72,7 @@ img {
     font-family: 'Numans', sans-serif;
     padding: 10px 0px;
     list-style-type: none;
+    display: flex;
   }
   .tagline{
     display: flex;
