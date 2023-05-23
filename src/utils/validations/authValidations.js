@@ -13,11 +13,6 @@ export async function validateSignInInputs(email, password) {
 
     let errors = [];
 
-    // send email and password to the sever
-    // if no email exists, return errors
-    // if email exists but password is incorrect, return errors
-    // if it exists and password is right, getJWT and redirect to next page
-
     if (!email) {
         errors.push({ email: EMAIL_UNDEFINED });
     } else {
@@ -30,22 +25,10 @@ export async function validateSignInInputs(email, password) {
         errors.push({ password: PASSWORD_UNDEFINED })
     }
 
-    if (errors.find(error => error.email) || errors.find(error => error.password)) {
-        return errors;
-    }
-
-    try {
-        const response = 
-            await axios.post('http://localhost:3005/auth/signin', { email, password });
-
-    } catch (error) {
-        console.log(error);
-    }
-
     return errors;
 }
 
-export async function validateSignUpInputs(displayName, email, password) {
+export async function validateCreateAccountInputs(displayName, email, password, profileImage) {
 
     const DISPLAY_NAME_UNDEFINED = 'Choose a display name';
     const DISPLAY_NAME_INVALID_LENGTH = 'Display name must be between 3-25 characters';
@@ -55,6 +38,7 @@ export async function validateSignUpInputs(displayName, email, password) {
     const EMAIL_IN_USE = 'Email already in use';
     const PASSWORD_UNDEFINED = 'Choose a password';
     const PASSWORD_INVALID_LENGTH = 'Password must be at least 8 characters';
+    const NO_PROFILE_IMAGE = 'Please add a profile image'
     const EMAIL_REGEX = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
 
     const emailIsValid = (email) => {
@@ -107,6 +91,10 @@ export async function validateSignUpInputs(displayName, email, password) {
         if (password.length < 8) {
             errors.push ({ password: PASSWORD_INVALID_LENGTH })
         }
+    }
+
+    if (!profileImage) {
+        errors.push({ profileImage: NO_PROFILE_IMAGE })
     }
 
     return errors;

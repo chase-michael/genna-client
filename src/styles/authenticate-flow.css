@@ -42,9 +42,10 @@
     width: calc(100% - 3% - 0.5rem);
 }
 
-  .authenticate .form small {
-    margin-bottom: 5%;
+  .display-name-message {
+    margin-block: 2%;
     font-weight: lighter;
+    font-size: 10pt;
   }
 
 
@@ -71,6 +72,7 @@
 
 .authenticate button {
     padding: 3% 5%;
+    margin-top: 5%;
     border-radius: 10px;
     border: none;
     background-color: #7c03e0;

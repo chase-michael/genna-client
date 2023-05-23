@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/authenticate-flow.css';
 import UserInputContext from '../contexts/UserInputContext';
-import ProfilePhotoUploader from './ProfilePhotoUploader';
-import { validateSignUpInputs } from '../utils/validations/authValidations';
+import ProfileImageFormInput from './ProfileImageFormInput';
+import { validateCreateAccountInputs } from '../utils/validations/authValidations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -14,15 +14,25 @@ function CreateAccountForm() {
   const navigate = useNavigate();
 
   async function handleSubmit(event) {
-    event.preventDefault();
-    const { displayName, email, password } = userInput;
 
-    const result = await validateSignUpInputs(displayName, email, password);
+    event.preventDefault();
+    const { displayName, email, password, profileImage } = userInput;
+    const result = await validateCreateAccountInputs(displayName, email, password, profileImage);
     setInvalidValues(result);
 
     if (result.length == 0) {
       try {
-        const response = await axios.post('http://localhost:3005/auth/signup', { displayName, email, password })
+        if (result.length == 0) {
+          let formData = new FormData();
+          formData.append('displayName', displayName);
+          formData.append('email', email);
+          formData.append('password', password);
+          formData.append('profileImage', profileImage);
+          const config = {     
+              headers: { 'content-type': 'multipart/form-data' }
+          }
+          const response = await axios.post('http://localhost:3005/auth/createAccount', formData, config)
+
         const { authToken } = response.data;
         localStorage.setItem('authToken', authToken);
         setUserInput({
@@ -32,8 +42,8 @@ function CreateAccountForm() {
           profileImage: undefined
         })
         navigate('/');
-  
-      } catch (error) {
+      }
+    } catch (error) {
         console.log(error.response.data.errors);
       }
     }
@@ -75,9 +85,9 @@ function CreateAccountForm() {
               {invalidValues.find(error => error.displayName).displayName}
             </div>
           ) : (
-            <small>
-              This is how you appear to others throughout the site. You can change this later.
-            </small>
+            <div className="display-name-message">
+              This is how you appear to others throughout the site. You can change it later.
+            </div>
           )}
         </div>
         
@@ -120,11 +130,20 @@ function CreateAccountForm() {
           }
         </div>
         
-        <ProfilePhotoUploader
-          onChange={(imgURL) =>
-            setUserInput({ ...userInput, profileImage: imgURL })
+        <div>
+          <ProfileImageFormInput
+            onChange={(img) =>
+              setUserInput({ ...userInput, profileImage: img })
+            }
+          />
+          {invalidValues.find(error => error.profileImage) && 
+            <div className="error">
+              <FontAwesomeIcon icon={faExclamationCircle}/>
+              {invalidValues.find(error => error.profileImage).profileImage}
+            </div>
           }
-        />
+        </div>
+
         <div>
           <button type="submit">
             Create Account
