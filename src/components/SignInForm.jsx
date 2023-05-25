@@ -1,16 +1,36 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import '../styles/authenticate-flow.css';
 import UserInputContext from '../contexts/UserInputContext';
-import { validateSignInInputs } from '../utils/validations/authValidations';
+import { validateSignInInputs } from '../utils/authFormValidations';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
+import { validateAuthToken } from '../utils/validateAuthToken';
+import { Navigate } from 'react-router-dom';
+
 
 function SignInForm() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const { userInput, setUserInput } = useContext(UserInputContext);
   const [invalidValues, setInvalidValues] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (localStorage.getItem('authToken')) {
+      validateAuthToken().then(isValid => {
+        if (isValid) {
+          setIsAuthenticated(true);
+        }
+      }).catch(error => {
+        console.error(error);
+      });
+    }
+  }, []);
+
+  if (isAuthenticated) {
+    return <Navigate to="/" />;
+  }
 
   async function handleSubmit(event) {
     event.preventDefault();

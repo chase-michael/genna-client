@@ -9,7 +9,11 @@ import { AiOutlineSmile } from "react-icons/ai";
 import { TfiGallery } from "react-icons/tfi";
 import { motion } from "framer-motion";
 import { useRef } from "react";
+import { useNavigate } from 'react-router-dom';
+import handleSignOut from "../utils/handleSignOut";
+
 const Home = () => {
+  const navigate = useNavigate();
   const carousel = useRef();
   const [data, setData] = useState([]);
   const [showElement, setShowElement] = useState(false);
@@ -114,7 +118,7 @@ const Home = () => {
           <li>About Genna.com</li>
           <li>View Galleries</li>
           <li>Create Account</li>
-          <li>Sign In</li>
+          <li onClick={() => handleSignOut(navigate)}>Sign Out</li>
           <li>Privacy Policy</li>
           <li>Terms & Conditions</li>
           <li> &#169; 2023</li>
