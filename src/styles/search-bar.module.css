@@ -1,0 +1,115 @@
+.searchBar {
+  display: flex;
+  flex-grow: 1;
+  position: relative;
+}
+
+.searchBar .withResults {
+  border-radius: 10px 10px 0 0;
+}
+
+.searchBar input {
+  flex-grow: 1;
+  background-color: #FAFAFA;
+  box-shadow: inset 0 2px 4px 0 #E0C6F5;
+  height: 45px;
+  padding-left: 15%;
+  border-radius: 10px;
+  font-family: 'Numans';
+  font-size: 11pt;
+  border: none;
+  z-index: 1000;
+}
+
+.searchBar input::placeholder {
+  color: rgb(51, 51, 51);
+}
+  
+.searchBar input:focus {
+  outline: none;
+}
+
+.searchIcon {
+  position: absolute;
+  top: 25%;
+  left: 5%;
+  z-index: 1001;
+}
+
+.clearSearchBarIcon {
+  position: absolute;
+  cursor: pointer;
+  top: 23%;
+  right: 5%;
+  z-index: 1001;
+}
+
+.searchResults {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  background-color: #F1F4FA;
+  border-radius: 10px;
+  box-shadow: inset 0 2px 4px 2px rgba(0, 0, 0, 0.052);
+  top: 50%;
+  width: 100%;
+  padding-top: 30px;
+  z-index: 500;
+}
+
+.searchResult {
+  display: flex;
+  align-items: center;
+  padding-block: 4%;
+  padding-inline: 10%;
+}
+
+.searchResult:last-child {
+  padding-bottom: 8%;
+}
+
+.resultProfileIcon {
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
+}
+
+.resultIcon {
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.resultText {
+  margin-left: 25px;
+}
+
+.viewFullResults {
+  margin-left: 10%;
+  font-size: 10pt;
+  color: #1877F2;
+  padding-top: 4%;
+  padding-bottom: 6%;
+}
+
+.noSearchResults {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: absolute;
+  background-color: #F1F4FA;
+  border-radius: 10px;
+  box-shadow: inset 0 2px 4px 2px rgba(0, 0, 0, 0.052);
+  top: 50%;
+  width: 100%;
+  padding-top: 30px;
+  z-index: 500;
+}
+
+.noSearchResults:last-child {
+  padding-bottom: 25%;
+}
+
+.bender {
+  max-width: 80px;
+  color: grey;
+}

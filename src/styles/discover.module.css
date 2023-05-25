@@ -1,12 +1,14 @@
-.discover-main{
-    margin: 100px auto;
-    width: 90%;
-    font-family: 'Nova Mono', 'monospace';
+.discover {
+    margin-inline: 10%;
+    display: flex;
+    margin-top: 10%;
+    gap: 10%;
 }
+
 .featured-container{
     display: flex;
     align-items: center;
-    padding-top:40px;
+    padding-top: 40px;
     padding-bottom: 60px;
     position: relative;
 }

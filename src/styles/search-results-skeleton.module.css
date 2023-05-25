@@ -1,0 +1,56 @@
+.searchResultsSkeleton {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    background-color: #F1F4FA;
+    border-radius: 10px;
+    box-shadow: inset 0 2px 4px 2px rgba(0, 0, 0, 0.052);
+    top: 50%;
+    width: 100%;
+    height: 19rem;
+    padding-top: 45px;
+    z-index: 500;
+  }
+  
+  .resultSkeleton {
+    display: flex;
+    align-items: center;
+    padding-bottom: 8%;
+    padding-inline: 10%;
+  }
+  
+  .resultProfileIconSkeleton {
+    width: 50px;
+    height: 50px;
+    animation: pulse 2s infinite linear;
+    background-color: #e1e3e6;
+    border-radius: 50%;
+  }
+  
+  .resultIconSkeleton {
+    width: 50px;
+    height: 50px;
+    animation: pulse 2s infinite linear;
+    background-color: #e1e3e6;
+  }
+  
+  .resultTextSkeleton {
+    width: 155px;
+    height: 25px;
+    margin-left: 25px;
+    border-radius: 5px;
+    animation: pulse 2s infinite linear;
+    background-color: #e1e3e6;
+  }
+  
+  @keyframes pulse {
+    0% {
+     background-color: #e1e3e6;
+    }
+    50% {
+     background-color: #d3d1d1;
+    }
+    100% {
+     background-color: #e1e3e6;
+   }
+  }
