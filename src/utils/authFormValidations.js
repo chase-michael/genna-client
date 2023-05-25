@@ -55,7 +55,7 @@ export async function validateCreateAccountInputs(displayName, email, password, 
         } else {
             try {
                 const response =
-                    await axios.post('http://localhost:3005/auth/displayNameInUse', { displayName });
+                    await axios.get('http://localhost:3005/auth/displayNameInUse', { params: { displayName } });
 
                     if (response.data.inUse) {
                         errors.push ({ displayName: DISPLAY_NAME_IN_USE })
@@ -74,7 +74,7 @@ export async function validateCreateAccountInputs(displayName, email, password, 
         } else {
             try {
                 const response =
-                    await axios.post('http://localhost:3005/auth/emailInUse', { email });
+                    await axios.get('http://localhost:3005/auth/emailInUse', { params: { email } });
 
                     if (response.data.inUse) {
                         errors.push ({ email: EMAIL_IN_USE })

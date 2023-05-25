@@ -4,17 +4,19 @@ import axios from 'axios';
 import '../styles/authenticate-flow.css';
 import UserInputContext from '../contexts/UserInputContext';
 import ProfileImageFormInput from './ProfileImageFormInput';
-import { validateCreateAccountInputs } from '../utils/validations/authValidations';
+import { validateCreateAccountInputs } from '../utils/authFormValidations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 
 function CreateAccountForm() {
   const { userInput, setUserInput } = useContext(UserInputContext);
   const [invalidValues, setInvalidValues] = useState([]);
+  const [submitIntents, setSubmitIntents] = useState(0);
   const navigate = useNavigate();
 
   async function handleSubmit(event) {
-
+    
+    setSubmitIntents(submitIntents + 1);
     event.preventDefault();
     const { displayName, email, password, profileImage } = userInput;
     const result = await validateCreateAccountInputs(displayName, email, password, profileImage);
@@ -60,7 +62,7 @@ function CreateAccountForm() {
           alt="Genna"
           onClick={() => navigate('/')}
         />
-        Create Account
+        <h4>Create Account</h4>
       </div>
 
       <form
@@ -85,6 +87,7 @@ function CreateAccountForm() {
               {invalidValues.find(error => error.displayName).displayName}
             </div>
           ) : (
+            submitIntents < 2 &&
             <div className="display-name-message">
               This is how you appear to others throughout the site. You can change it later.
             </div>
@@ -145,7 +148,7 @@ function CreateAccountForm() {
         </div>
 
         <div>
-          <button type="submit">
+          <button className="cabutton" type="submit">
             Create Account
           </button>
         </div>
