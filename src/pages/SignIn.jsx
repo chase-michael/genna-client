@@ -6,7 +6,6 @@ function SignIn() {
   return (
     <div className="SignIn">
       <SignInForm />
-      <GoogleButton onClick={() => { console.log('Google button clicked') }}/>
     </div>
   );
 }

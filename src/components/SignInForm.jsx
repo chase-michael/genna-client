@@ -1,6 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import '../styles/authenticate-flow.css';
+import styles from '../styles/authenticate-forms.module.css';
 import UserInputContext from '../contexts/UserInputContext';
 import { validateSignInInputs } from '../utils/authFormValidations';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import { validateAuthToken } from '../utils/validateAuthToken';
 import { Navigate } from 'react-router-dom';
+import Footer from './Footer';
 
 
 function SignInForm() {
@@ -59,73 +60,76 @@ function SignInForm() {
   }
 
   return (
-    <div className="authenticate">
-
-      <div className="header">
-        <img
-          className="genna-helper"
-          src={'/genna-logo.png'}
-          alt="Genna"
-          onClick={() => navigate('/')}
-        />
-        Sign In
-      </div>
-
-      <form
-        className="form"
-        onSubmit={handleSubmit}
-        noValidate
-      >
-
-        <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            value={userInput.email}
-            onChange={(e) =>
-              setUserInput({ ...userInput, email: e.target.value })
-            }
-            autoComplete="email"
+    <>
+      <div className={styles.banner} />
+      <main className={styles.authenticate}>
+        <div className={styles.header}>
+          <img
+            className={styles.gennaHelper}
+            src={'/genna-logo.png'}
+            alt="Genna"
+            onClick={() => navigate('/')}
           />
-          {invalidValues.find(error => error.email) && 
-            <div className="error">
-              <FontAwesomeIcon icon={faExclamationCircle}/>
-              {invalidValues.find(error => error.email).email}
-            </div>
-          }
+          Sign In
         </div>
 
-        <div>
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            value={userInput.password}
-            onChange={(e) =>
-              setUserInput({ ...userInput, password: e.target.value })
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit}
+          noValidate
+        >
+
+          <div className={styles.emailInput}>
+            <label htmlFor="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              value={userInput.email}
+              onChange={(e) =>
+                setUserInput({ ...userInput, email: e.target.value })
+              }
+              autoComplete="email"
+            />
+            {invalidValues.find(error => error.email) && 
+              <div className={styles.error}>
+                <FontAwesomeIcon icon={faExclamationCircle}/>
+                {invalidValues.find(error => error.email).email}
+              </div>
             }
-            autoComplete="password"
-          />
-          {invalidValues.find(error => error.password) && 
-            <div className="error">
-              <FontAwesomeIcon icon={faExclamationCircle}/>
-              {invalidValues.find(error => error.password).password}
-            </div>
-          }
-        </div>
-        
-        <Link to="/forgot-password" className="forgot-password-link">
-          Forgot Password?
-        </Link>
-        <div className="signin-create-row">
-          <button type="submit">Sign In</button>
-          <Link to="/create-account">
-            Create Account
+          </div>
+
+          <div>
+            <label htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              value={userInput.password}
+              onChange={(e) =>
+                setUserInput({ ...userInput, password: e.target.value })
+              }
+              autoComplete="password"
+            />
+            {invalidValues.find(error => error.password) && 
+              <div className={styles.error}>
+                <FontAwesomeIcon icon={faExclamationCircle}/>
+                {invalidValues.find(error => error.password).password}
+              </div>
+            }
+          </div>
+          
+          <Link to="/forgot-password" className={styles.forgotPasswordLink}>
+            Forgot Password?
           </Link>
-        </div>
-      </form>
-    </div>
+          <div className={styles.signInCreateRow}>
+            <button type="submit">Sign In</button>
+            <Link to="/create-account" className={styles.link}>
+              Create Account
+            </Link>
+          </div>
+        </form>
+      </main>
+      <Footer />
+    </>
   );
 }
 
