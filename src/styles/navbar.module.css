@@ -1,0 +1,75 @@
+.navbar {
+  width: calc(100% - calc(8.5% * 2));
+  padding-block: 1.3rem;
+  padding-inline: 8.5%;
+  background-color: #F1F4FA;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+}
+.logo {
+  width: 4.2rem;
+  height: 4.2rem;
+}
+
+.navIcons {
+  display: flex;
+  gap: 1rem;
+}
+
+.navIcons img {
+  width: 2.2rem;
+}
+
+.profileIcon {
+  margin-top: 0.2rem;
+  width: 1.9rem !important;
+  height: 1.9rem;
+  border-radius: 50%;
+  border: solid 1px rgb(151, 151, 151);
+}
+
+@media (min-width: 922px) {
+
+  .navbar {
+    padding-block: .75rem;
+  }
+  
+  .navIcons {
+    gap: 4rem;
+  }
+
+  .icon {
+    display: flex;
+    text-align: center;
+  }
+
+  .iconImage {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
+  .link {
+    font-size: small;
+    color: black;
+    text-decoration-line: none;
+  }
+
+  .navIcons img {
+    width: auto;
+  }
+
+  .logo {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .profileIcon {
+    width: 2.2rem !important;
+    height: 2.2rem !important;
+    border-radius: 50%;
+  }
+
+
+}

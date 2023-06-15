@@ -6,6 +6,8 @@ import SignIn from './pages/SignIn';
 import CreateAccount from './pages/CreateAccount';
 import Discover from './components/Discover';
 import ArtistProfile from './components/ArtistProfile';
+import Dashboard from './components/Dashboard';
+import UploadWorkForm from './components/dev/UploadWorkForm';
 
 const Pages = () => {
   return (
@@ -16,6 +18,8 @@ const Pages = () => {
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/create-account' element={<CreateAccount />} />
         <Route path='/discover' element={<Discover />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+        <Route path='/devUploadWork' element={<UploadWorkForm />} />
     </Routes>
   )
 }

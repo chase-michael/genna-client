@@ -14,7 +14,7 @@ function App() {
 
 function ConditionalNavbar() {
   const location = useLocation();
-  const excludedRoutes = ['/sign-in', '/create-account', '/complete-your-profile'];
+  const excludedRoutes = ['/sign-in', '/create-account', '/complete-your-profile', '/'];
 
   if (excludedRoutes.includes(location.pathname)) {
     return null;

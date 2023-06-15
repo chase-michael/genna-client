@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import "./styles/index.css";
 import App from "./App";
 import { UserInputProvider } from './contexts/UserInputContext';
+import './styles/footer.css';
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(

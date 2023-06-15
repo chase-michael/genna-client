@@ -1,0 +1,237 @@
+.home {
+  background-color: #F1F4FA;
+}
+
+.hero {
+  background-image: linear-gradient(#F1F4FA, #D1B5FD);
+  display: grid;
+  gap: 0.25rem;
+  padding-left: 8.5%;
+  padding-top: 0.5rem;
+  padding-bottom: 2.5rem;
+  font-size: 30pt;
+}
+
+.heroTitle {
+  font-family: "Nova Mono";
+  font-size: 24pt;
+}
+
+.carousel {
+  overflow: hidden;
+}
+
+.innerCarousel {
+  display: flex;
+}
+
+.carouselItem {
+  min-width: 112px;
+  height: 100%;
+  padding: 1px;
+}
+
+.carouselItem img {
+  object-fit: cover;
+}
+
+.information {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+  align-items: center;
+  padding-block: 2.5rem;
+}
+
+.informationHeader {
+  font-family: "Nova Mono";
+  font-weight: normal;
+  text-align: center;
+}
+
+.informationGrid {
+  display: grid;
+  gap: 2rem;
+  padding-inline: 3rem;
+  position: relative;
+  padding-bottom: 1rem;
+  cursor: default;
+}
+
+.gridItem {
+  display: flex;
+  align-items: center;
+  font-size: 12pt;
+}
+
+.gridIcon {
+  padding-right: 0.75rem;
+  width: 2rem;
+  height: 2rem;
+}
+
+.gennaCreeper {
+  position: absolute;
+  right: 2.5rem;
+  bottom: -1.5rem;
+  height: 40px;
+  width: 40px;
+}
+
+.gennaCreeperText {
+  position: absolute;
+  right: 2.2rem;
+  bottom: -1.9rem;
+}
+
+.callToActionButton {
+  padding: 0.8rem;
+  width: 11rem;
+  border-radius: 10px;
+  background-color: #FAFAFA;
+  border: none;
+  font-size: 11pt;
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25), 0 -2px 5px 0 #E0C6F5 inset;
+}
+
+.callToActionButton:active {        
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5), 0 -2px 5px 0 #E0C6F5 inset;
+}
+
+
+@media (min-width: 922px) {
+  .hero {
+    grid-template-rows: auto 1fr;
+    grid-template-columns: auto 2fr;
+    grid-template-areas: 
+    "item1 item3" 
+    "item2 item3";
+    padding-left: 10%;
+    padding-top: 0.5rem;
+    padding-bottom: 3rem;
+    font-size: 48pt;
+    cursor: default;
+  }
+
+  .heroTitle {
+    grid-area: item1;
+    font-family: "Nova Mono";
+    font-size: 32pt;
+  }
+
+  .heroBody {
+    grid-area: item2;
+  }
+
+  .selectedWorkSection {
+    grid-area: item3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-size: 12pt;
+  }
+
+  .selectedWork img {
+    width: 20rem;
+    height: 20rem;
+    box-shadow: 0 8px 18px 0 rgba(0, 0, 82, 0.15);
+  }
+
+  .workTitle {
+    font-size: 16pt;
+    max-width: 20rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .workArtist {
+    max-width: 20rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .innerCarousel {
+    display: flex;
+  }
+
+  .carouselItem {
+    min-width: 20%;
+    height: 10rem;
+    padding: 1px;
+    cursor: pointer;
+  }
+
+  .carouselItem:first-child {
+    padding-left: 0;
+  }
+
+  .information {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    align-items: center;
+    padding-block: 4rem;
+    padding-inline: 4rem;
+  }
+
+  .informationHeader {
+    font-family: "Nova Mono";
+    text-align: center;
+    font-size: 32pt;
+  }
+
+  .informationGrid {
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem 0;
+    justify-items: center;
+    padding-bottom: 0;
+    max-width: 75%;
+  }
+
+  .gridItem {
+    display: flex;
+    align-items: center;
+    font-size: 16pt;
+    max-width: 65%;
+  }
+
+  .gridIcon {
+    padding-right: 1rem;
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .gennaCreeper {
+    position: absolute;
+    right: 10%;
+    height: 60px;
+    width: 60px;
+  }
+
+  .gennaCreeperText {
+    position: absolute;
+    right: 10%;
+  }
+
+  .callToActionButton {
+    padding: 1rem;
+    width: 16rem;
+    font-size: 12pt;
+  }
+
+  footer {
+    background-image: linear-gradient(#F1F4FA, #D1B5FD);
+    padding: 4rem 2rem 1rem 2rem;
+  }
+
+  footer ul li {
+    list-style-type: none;
+    padding: 2px 0px;
+    font-size: smaller;
+  }
+}
+
