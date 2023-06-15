@@ -5,7 +5,7 @@ import { BiSearchAlt, BiX } from 'react-icons/bi';
 import { debounce } from 'lodash';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import bender from '../bender.svg'
+import bender from '../icons/bender.svg'
 
 const SearchResult = ({ resultType, url, icon, label }) => {
   const navigate = useNavigate();
