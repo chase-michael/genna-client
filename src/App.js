@@ -2,11 +2,12 @@ import React from "react";
 import { BrowserRouter, useLocation } from 'react-router-dom';
 import Pages from "./Pages";
 import Navbar from "./components/Navbar";
-
+import ScrollToTop from "./components/ScrollToTop"; 
 function App() {
   return (
     <BrowserRouter>
       <ConditionalNavbar />
+      <ScrollToTop/> 
       <Pages />
     </BrowserRouter>
   );

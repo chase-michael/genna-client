@@ -8,12 +8,14 @@ import { validateCreateAccountInputs } from '../utils/authFormValidations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import Footer from './Footer';
+import { useEffect } from 'react';
 
 function CreateAccountForm() {
   const { userInput, setUserInput } = useContext(UserInputContext);
   const [invalidValues, setInvalidValues] = useState([]);
   const [submitIntents, setSubmitIntents] = useState(0);
   const navigate = useNavigate();
+
 
   async function handleSubmit(event) {
     
