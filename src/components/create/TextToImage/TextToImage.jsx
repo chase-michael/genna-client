@@ -9,6 +9,7 @@ import ChooseFinalVersion from "../ChooseFinalVersion";
 import openAIlogo from '../../../icons/openAI.svg';
 import ToolContainer from '../ToolContainer';
 
+
 function TextToImage() {
   const [step, setStep] = useState(0);
   const [prompt, setPrompt] = useState('');
