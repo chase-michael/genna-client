@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion } from "framer-motion";
 import styles from '../styles/discover.module.css';
-import skeleton from '../styles/discover-skeleton.module.css';
+import skeleton from '../styles/skeletons/discover-skeleton.module.css';
 
 const DiscoverSkeletons = () => {
   const carousel = useRef();

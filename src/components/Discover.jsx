@@ -22,7 +22,6 @@ const Discover = () => {
     const artists = await fetchSampleArtists(8);
     setSampleArtists(artists);
     const collectionWorks = await fetchSampleCollectionWorks('Blobart', 8)
-    console.log(sampleCollectionWorks)
     setSampleCollectionWorks(collectionWorks);
     setLoading(false);
   };

@@ -9,6 +9,8 @@ import ArtistProfile from './components/ArtistProfile';
 import Dashboard from './components/Dashboard';
 import UploadWorkForm from './components/dev/UploadWorkForm';
 import Create from './components/create/Create';
+import TextToImage from './components/create/TextToImage/TextToImage';
+
 
 const Pages = () => {
   return (
@@ -18,6 +20,7 @@ const Pages = () => {
         <Route path='/work/:id' element={<WorkView />} />
         <Route path='/sign-in' element={<SignIn />} />
         <Route path='/create' element={<Create />} />
+        <Route path='/create/textToImage' element={<TextToImage />} />
         <Route path='/create-account' element={<CreateAccount />} />
         <Route path='/discover' element={<Discover />} />
         <Route path='/dashboard' element={<Dashboard />} />

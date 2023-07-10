@@ -3,53 +3,125 @@
 }
 
 .create {
-  text-align: center;
-  padding: 3rem 3rem 2rem 3rem;
-  color: var(--descriptionColor);
-  font-size: 11pt;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85%;
+  margin: 0 auto;
 }
 
-.createGrid{
+.info {
+  text-align: center;
+  padding: 2rem;
+  color: var(--descriptionColor);
+  font-size: 11pt;
+  animation: fadeIn 0.5s ease-out;
+}
+
+.toolsGrid {
     display: grid;
     gap: 2rem;
     padding-bottom: 3rem;
 }
 
-.createBtn {
-  padding: 1.5rem;
-  width: calc(80% - 1.5rem);
+@keyframes fadeAndScale {
+  0% {
+      opacity: 0;
+      transform: scale3d(.75,.75,1);
+  }
+
+  70% {
+      opacity: 0;
+      transform: scale3d(.75,.75,1);
+  }
+
+  100% {
+      opacity: 1;
+      transform: scale3d(1,1,1);
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 1;
+  }
+}
+
+.createButton {
+  padding: 1.25rem 1.5rem;
+  max-width: 280px;
   border-radius: 10px;
   background-color: #fafafa;
   border: none;
   display: flex;
   margin: 0px auto;
   box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25), 0 -2px 5px 0 #e0c6f5 inset;
-  gap: 1.5rem;
+  gap: 1rem;
   text-decoration: none;
+  animation: fadeAndScale 1.5s cubic-bezier(.39,-1.05,.58,1.95) backwards;
+  transform-origin: center bottom;
 }
 
-.btnImg {
-  width: 3rem;
-  height: 3rem;
+.one {
+  animation-delay: -0.9s;
 }
 
-.btnLabel {
+.two {
+  animation-delay: -0.8s;
+}
+
+.three {
+  animation-delay: -0.7s;
+}
+
+.buttonIcon {
+  width: 2.8rem;
+  height: 2.8rem;
+}
+
+.buttonLabel {
   display: flex;
   flex-direction: column;
-  gap: .5rem;
-  margin-top: 8px;
+  gap: .2rem;
+  margin-top: 6px;
 }
 
-.btnTitle {
+.labelHeader {
   color: #000;
-  font-size: 18pt;
+  font-size: 16pt;
   margin: none;
   padding: none;
   font-family: "Nova Mono";
 }
 
-.btnDescription {
+.labelDescription {
   color: var(--descriptionColor);
   font-size: 12px;
   font-family: numans;
+}
+
+@media (min-width: 922px) {
+
+  .create {
+    margin: 0 auto;
+    max-width: 43rem;
+  }
+
+  .info {
+    padding: 3rem;
+  }
+
+  .createButton {
+    max-width: 16rem;
+    cursor: pointer;
+  }
+
+  .toolsGrid {
+    grid-template-columns: auto auto;
+  }
+
 }

@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import styles from '../styles/search-bar.module.css';
-import skeleton from '../styles/search-results-skeleton.module.css';
+import skeleton from '../styles/skeletons/search-results-skeleton.module.css';
 import { BiSearchAlt, BiX } from 'react-icons/bi';
 import { debounce } from 'lodash';
 import { useNavigate } from 'react-router-dom';
