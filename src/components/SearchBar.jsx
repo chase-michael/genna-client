@@ -1,22 +1,26 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styles from '../styles/search-bar.module.css';
-import skeleton from '../styles/skeletons/search-results-skeleton.module.css';
-import { BiSearchAlt, BiX } from 'react-icons/bi';
 import { debounce } from 'lodash';
-import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { BiX } from 'react-icons/bi';
 import bender from '../icons/bender.svg'
+import searchBarMagnifyingGlass from '../icons/searchBarMagnifyingGlass.svg'
 
-const SearchResult = ({ resultType, url, icon, label }) => {
+const SearchResult = ({ resultType, url, icon, label, key, close }) => {
   const navigate = useNavigate();
 
   return (
     <div
       className={styles.searchResult}
-      onClick={() => navigate(url)}
+      onClick={() => {
+        navigate(url)
+        close()
+      }}
     >
       <img
         src={icon}
+        key={key}
         alt=''
         className={(resultType === 'artist') ? styles.resultProfileIcon : styles.resultIcon}
       />
@@ -25,7 +29,7 @@ const SearchResult = ({ resultType, url, icon, label }) => {
   );
 }
 
-const SearchBar = () => {
+const SearchBar = ({ close }) => {
   const [inputValue ,setInputValue] = useState('');
   const [results, setResults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -61,7 +65,7 @@ const SearchBar = () => {
     }
   }
 
-  const debouncedFetchResults = useRef(debounce(fetchResults, 1000)).current;
+  const debouncedFetchResults = useRef(debounce(fetchResults, 1500)).current;
 
   useEffect(() => {
     if (inputValue) {
@@ -74,67 +78,57 @@ const SearchBar = () => {
   
   return (
       <div className={styles.searchBar}>
-        <BiSearchAlt className={styles.searchIcon} size="1.5em" />
         <input
           className={inputValue ? styles.withResults : ''}
           onChange={(e) => setInputValue(e.target.value)}
           value={inputValue}
           type="text"
-          placeholder="Artists, Titles, Descriptions"
+          placeholder="Search artists, titles, descriptions..."
+        />
+        <img
+          className={styles.searchBarMagnifyingGlass}
+          src={searchBarMagnifyingGlass}
+          alt=""
         />
         {(inputValue !== '') &&
           <BiX
             className={styles.clearSearchBarIcon}
             size="1.5em"
+            color="#B4B4B4"
             onClick={() => {
               setSearchFinished(false);
               setInputValue('');
             }}
           />
         }
-        {loading ? (
-        <div className={skeleton.searchResultsSkeleton}>
-          <div className={skeleton.resultSkeleton}>
-            <div className={skeleton.resultProfileIconSkeleton} />
-            <div className={skeleton.resultTextSkeleton} />
-          </div>
-          <div className={skeleton.resultSkeleton}>
-            <div className={skeleton.resultProfileIconSkeleton} />
-            <div className={skeleton.resultTextSkeleton} />
-          </div>
-          <div className={skeleton.resultSkeleton}>
-            <div className={skeleton.resultIconSkeleton} />
-            <div className={skeleton.resultTextSkeleton} />
-          </div>
-          <div className={skeleton.resultSkeleton}>
-            <div className={skeleton.resultIconSkeleton} />
-            <div className={skeleton.resultTextSkeleton} />
-          </div>
-        </div>
-      ) : (
-        inputValue !== '' && results.length > 0 ? (
-          <div className={styles.searchResults}>
-            {results.slice(0, 4).map(result => (
-              <SearchResult key={result.id} {...result} />
-            ))}
-            {results.length > 4 && (
-              <div className={styles.viewFullResults}>
-                View Full Results
-              </div>
-            )}
-          </div>
-        ) : inputValue !== '' && searchFinished ? (
-          <div className={styles.noSearchResults}>
-            <img
-              className={styles.bender}
-              src={bender}
-              alt=''
-            />
-            <div style={{ fontWeight: 'bold' }}>No results</div>
-            <div style={{ textAlign: 'center', fontSize: 'smaller' }}>Maybe we should just kill all humans?</div>
-          </div>
-        ) : null
-      )}
+        {!loading && (
+          inputValue !== '' && results.length > 0 ? (
+            <div className={styles.searchResults}>
+              {results.slice(0, 4).map(result => (
+                <SearchResult key={result.id} {...result} close={close} />
+              ))}
+              {results.length > 4 && (
+                <Link
+                  to={`/search/${inputValue}`}
+                  className={`${styles.viewFullResults} ${styles.link}`}
+                  onClick={close}
+                >
+                  View Full Results →
+                </Link>
+              )}
+            </div>
+          ) : inputValue !== '' && searchFinished ? (
+            <div className={styles.noSearchResults}>
+              <img
+                className={styles.bender}
+                src={bender}
+                alt=''
+              />
+              <div style={{ fontWeight: 'bold' }}>No results</div>
+              <div style={{ textAlign: 'center', fontSize: 'smaller' }}>Maybe we should just kill all humans?</div>
+            </div>
+          ) : null
+        )}
       </div>
   );
 };

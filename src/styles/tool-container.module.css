@@ -1,14 +1,41 @@
 .toolContainer {
   width: 100%;
   margin: 0 auto;
-  border-radius: 30px;
+  margin-top: 1rem;
+  max-width: 480px;
 }
+
+.progressHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 20px;
+  padding-block: 0.5rem;
+  transition: 2sec ease-in-out;
+  margin: 0 auto;
+}
+
+.headerIcon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.headerLabel {
+  font-size: 12pt;
+}
+
+
 
 @media (min-width: 922px) {
 
   .toolContainer {
-    border: solid 1px rgb(170, 170, 170);
     max-width: 43rem;
+    height: 32rem;
+  }
+
+  .progressHeader {
+    max-width: none;
   }
   
 }

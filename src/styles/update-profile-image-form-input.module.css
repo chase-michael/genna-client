@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  margin-bottom: 1rem;
 }
 
 .imageContainer {
@@ -21,28 +22,5 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 20px;
   box-shadow: 0 2px 4px rgba(128, 128, 128, 0.25);
-}
-
-.imageContainer:hover {
-  box-shadow: inset 0 2px 6px 0 #E0C6F5, 0 2px 4px rgba(128, 128, 128, 0.25);
-}
-
-.imageContainer:focus {
-  box-shadow: inset 0 2px 6px 0 #E0C6F5, 0 2px 6px rgba(128, 128, 128, 0.75);
-}
-
-.instructions {
-  max-width: 66%;
-}
-
-.title {
-  font-weight: 600;
-  margin-bottom: 1%;
-}
-
-.details {
-  font-weight: 300;
-  font-size: 10pt;
 }

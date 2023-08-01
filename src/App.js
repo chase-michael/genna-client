@@ -1,27 +1,31 @@
-import React from "react";
+import { useContext } from 'react';
 import { BrowserRouter, useLocation } from 'react-router-dom';
 import Pages from "./Pages";
 import Navbar from "./components/Navbar";
-import ScrollToTop from "./components/ScrollToTop"; 
-function App() {
+import { AuthContext } from './contexts/AuthContext';
+
+const MainContent = ({ children }) => {
+  const location = useLocation();
+  const pathName = location.pathname;
+  
   return (
-    <BrowserRouter>
-      <ConditionalNavbar />
-      <ScrollToTop/> 
-      <Pages />
-    </BrowserRouter>
+    <div className={'main-content'}>
+      {children}
+    </div>
   );
 }
 
-function ConditionalNavbar() {
-  const location = useLocation();
-  const excludedRoutes = ['/sign-in', '/create-account', '/complete-your-profile', '/'];
-
-  if (excludedRoutes.includes(location.pathname)) {
-    return null;
-  }
-
-  return <Navbar />;
+function App() {
+  const { authToken } = useContext(AuthContext);
+  
+  return (
+    <BrowserRouter>
+      <Navbar key={authToken} />
+      <MainContent>
+        <Pages />
+      </MainContent>
+    </BrowserRouter>
+  );
 }
 
 export default App;

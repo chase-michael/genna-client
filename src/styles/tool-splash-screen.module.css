@@ -1,8 +1,13 @@
-.modal {
+.splashScreen {
   background-color: #F1F4FA;
   padding: 1.8rem;
   margin: 0 auto;
-  animation: fadeAndScale 0.5s cubic-bezier(.39,-1.05,.58,1.95) backwards;
+  margin-top: 2rem;
+}
+
+.content {
+  max-width: 325px;
+  margin: 0 auto;
 }
 
 .subtitle {
@@ -45,14 +50,22 @@
 
 @media (min-width: 922px) {
 
-  .modal {
+  .splashScreen {
+    display: flex;
+    align-items: center;
     background-color: #F1F4FA;
-    border-radius: 30px;
-    padding: 3rem;
+    padding-inline: 3rem;
     max-width: none;
     margin: 0 auto;
-    animation: fadeAndScale 0.5s cubic-bezier(.39,-1.05,.58,1.95) backwards;
     box-shadow: none;
+    height: 25.9rem;
+    border-radius: 0 0 30px 30px;
+    margin-top: none;
+  }
+
+  .content {
+    max-width: 80%;
+    margin: 0 auto;
   }
 
   .button {

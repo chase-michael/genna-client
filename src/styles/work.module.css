@@ -1,0 +1,126 @@
+.content {
+    min-height: calc(100vh - 5rem);
+    padding-top: 6rem;
+}
+
+
+.productView {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    margin-inline: 0.5rem;
+}
+
+.productImageContainer {
+    position: relative;
+    width: 100%;
+    padding-bottom: 100%;
+    overflow: hidden;
+    background-color: white;
+    border-radius: 16px;
+  }
+
+.productImage {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.productInformation {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 3%;
+    cursor: default;
+    max-width: 20rem;
+}
+
+.title {
+    font-size: 24pt;
+    font-weight: 800;
+}
+
+.artistName {
+    font-size: 12pt;
+    text-decoration: none;
+    color: white;
+    padding-top: 0.5rem;
+    text-decoration: underline;
+}
+
+.description {
+    padding-top: 0.5rem;
+    font-size: 10pt;
+}
+
+.skeleton {
+    animation: pulse 2s infinite linear;
+    background-color: #e1e3e6
+    ;
+    background-size: 1000px 100%;
+ }
+ 
+ @keyframes pulse {
+   0% {
+    background-color: #e1e3e6
+    ;
+   }
+   50% {
+    background-color: #d3d1d1;
+   }
+   100% {
+    background-color: #e1e3e6
+    ;
+  }
+ }
+
+@media (min-width: 922px) {
+
+    .work {
+        padding-left: 2rem;
+    }
+
+    .back {
+        padding-left: 0;
+        max-width: 20%;
+    }
+
+    .productView {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        padding-inline: 2rem;
+    }
+
+    .productImageContainer {
+        position: relative;
+        min-width: 42%;
+        max-width: 42%;
+        padding-bottom: 42%;
+        overflow: hidden;
+        background-color: white;
+      }
+    
+    .productImage {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .productInformation {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        padding: 0;
+        padding-bottom: 0.5rem;
+        padding-inline: 2rem;
+    }
+
+    .title {
+        font-size: 42pt;
+        font-weight: 800;
+    }
+
+}

@@ -1,123 +1,91 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useEffect, useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import styles from '../styles/navbar.module.css';
-import { getProfileImage } from '../utils/getProfileImage';
-import createIcon from '../icons/createIcon.svg';
-import discoverIcon from '../icons/discoverIcon.svg';
-import bagIcon from '../icons/bagIcon.svg';
-import bagIconFull from '../icons/bagIconFull.svg';
-import userIcon from '../icons/userIcon.svg';
+import northStar from '../icons/northStar.svg';
+import searchIcon from '../icons/searchIcon.svg'
+import { validateAuthToken } from '../utils/validateAuthToken';
+import SearchBar from './SearchBar';
+import { AuthContext } from '../contexts/AuthContext';
 
-const Navbar = () => {
-  const [profileImage, setProfileImage] = useState(undefined);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const itemInBag = false;
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+function Navbar() {
+  const { authToken, userData, signOut } = useContext(AuthContext);
+  const location = useLocation();
+  const [search, setSearch] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const excludedRoutes = ['/sign-in', '/create-account', '/complete-your-profile'];
 
-  
-
-  useEffect(() => {
-    if (localStorage.getItem('authToken')) {
-      getProfileImage().then(image => {
-        setProfileImage(image);
-        setIsAuthenticated(true);
-      }).catch(error => {
-        console.error(error);
-      });
+  const checkScroll = () => {
+    if (window.scrollY === 0) {
+      setIsScrolled(false);
+    } else if (window.scrollY > 0) {
+      setIsScrolled(true);
     }
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  useEffect(() => {
+    window.addEventListener('scroll', checkScroll);
+    return () => {
+      window.removeEventListener('scroll', checkScroll);
+    };
   }, []);
 
   useEffect(() => {
-    const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-    };
-    window.addEventListener('resize', handleResize);
-    
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, []);
+    // Trigger re-render
+  }, [authToken, userData]);
 
   return (
-    <header>
-      <nav className={styles.navbar}>
-        <div className={styles.logo}>
-          <Link to={isAuthenticated ? '/dashboard' : '/'}>
-            <img src="/genna-logo.png" alt="Genna - Home" />
-          </Link>
+    <header className={`${styles.header} ${search ? styles.searchActive : ''}`}>
+      {isScrolled && <div className={styles.scrolled} />}
+      <div className={styles.navbar}>
+        <Link
+          to="/"
+          onClick={search ? () => setSearch(search => !search) : null}  
+        >
+          <img className={styles.logo} src={northStar} alt="" />
+        </Link>
+        <div className={styles.navIcons}>
+          <img
+            className={styles.searchIcon}
+            src={searchIcon}
+            alt="search"
+            onClick={() => {
+              if (isScrolled) {
+                setIsScrolled(isScrolled => !isScrolled);
+              } else {
+                if (window.scrollY > 0) {
+                  setIsScrolled(isScrolled => !isScrolled)
+                }
+              }
+              setSearch(search => !search);
+            }}
+          />
+          {!excludedRoutes.includes(location.pathname) && (
+            userData?.profileImage ? (
+              <Link
+                to="/dashboard"
+                onClick={search ? () => setSearch(search => !search) : null}  
+              >
+                <img className={styles.profileIcon} src={userData.profileImage} alt=""/>
+              </Link>
+            ) : (
+              <Link
+                to="/sign-in"
+                onClick={search ? () => setSearch(search => !search) : null}  
+                className={styles.signIn}
+              >
+                SIGN IN
+              </Link>
+            )
+          )}
         </div>
-        {windowWidth > 922 ? (
-          <div className={styles.navIcons}>
-            <div className={styles.icon}>
-              <Link to={'/create'} className={styles.link} >
-                <img className={styles.iconImage} src={createIcon} alt="Create" />
-                <div>Create</div>
-              </Link>
-            </div>
-            <div className={styles.icon}>
-              <Link to={'/discover'} className={styles.link} >
-                <img className={styles.iconImage} src={discoverIcon} alt="Discover" />
-                <div>Discover</div>
-              </Link>
-            </div>
-            {itemInBag ? (
-              <div className={styles.icon}>
-                <Link to={'/bag'} className={styles.link} >
-                  <img className={styles.iconImage} src={bagIconFull} alt="Bag" />
-                  <div>Bag</div>
-                </Link>
-              </div>
-            ) : (
-            <div className={styles.icon}>
-              <Link to={'/bag'} className={styles.link} >
-                <img className={styles.iconImage} src={bagIcon} alt="Bag" />
-                <div>Bag</div>
-              </Link>
-            </div>
-            )}
-            {profileImage ? (
-              <div className={styles.icon}>
-                <Link to={'/profile'} className={styles.link} >
-                  <img className={styles.profileIcon} src={profileImage} alt="Sign In" />
-                  <div>Profile</div>
-                </Link>
-              </div>  
-            ) : (
-            <div className={styles.icon}>
-              <Link to={'/sign-in'} className={styles.link} >
-                <img className={styles.iconImage} src={userIcon} alt="Sign In" />
-                <div>Sign In</div>
-              </Link>
-            </div>  
-            )}
-          </div>
-        ) : (
-          <div className={styles.navIcons}>
-            <Link to={'/create'}>
-              <img src={createIcon} alt="Create" />
-            </Link>
-            <Link to={'/discover'}>
-              <img src={discoverIcon} alt="Discover" />
-            </Link>
-            {itemInBag && (
-              <Link to={'/bag'}>
-                <img src={bagIconFull} alt="Bag" />
-              </Link>
-            )}
-            {profileImage ? (
-              <Link to={'/profile'}>
-                <img className={styles.profileIcon} src={profileImage} alt="Profile" />
-              </Link>
-            ) : (
-              <Link to={'/sign-in'}>
-                <img src={userIcon} alt="Sign In" />
-              </Link>
-            )}
-          </div>
-        )}
-      </nav>
+      </div>
+      {search && <SearchBar close={() => setSearch(search => !search)} />}
     </header>
-  );
-};
+  )
+}
 
 export default Navbar;

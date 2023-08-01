@@ -1,75 +1,87 @@
-.navbar {
-  width: calc(100% - calc(8.5% * 2));
-  padding-block: 1.3rem;
-  padding-inline: 8.5%;
-  background-color: #F1F4FA;
+.header {
+  position: fixed;
+  top: 0;
+  width: calc(100% - 2.4rem);
   display: flex;
-  align-items: center;
+  flex-direction: column;
   justify-content: space-between;
-
+  gap: 3rem;
+  padding: 1rem 1.2rem;
+  z-index: 2;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.scrolled {
+  height: 5rem;
+  width: 100%;
+  top: 0;
+  left: 0;
+  position: fixed;
+  background: rgba(192, 192, 192, 0.2);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 0;
+  animation: fadeIn 0.25s linear;
+}
+
+.searchActive {
+  height: 100vh;
+  background: rgba(133, 133, 133, 0.6);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
 .logo {
-  width: 4.2rem;
-  height: 4.2rem;
+  height: 3rem;
+  width: 3rem;
+  filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.7));
 }
 
 .navIcons {
   display: flex;
+  align-items: center;
   gap: 1rem;
+  max-height: 3rem;
 }
 
-.navIcons img {
-  width: 2.2rem;
+.searchIcon {
+  height: 1.2rem;
+  width: 1.2rem;
+  filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.7));
+  cursor: pointer;
+}
+
+.signIn {
+  font-size: 10pt;
+  color: white;
+  font-weight: 300;
+  filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.7));
 }
 
 .profileIcon {
-  margin-top: 0.2rem;
-  width: 1.9rem !important;
-  height: 1.9rem;
+  width: 2rem;
+  height: 2rem;
   border-radius: 50%;
-  border: solid 1px rgb(151, 151, 151);
+  border: solid 1px white;
+  filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.7));
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
 }
 
 @media (min-width: 922px) {
 
-  .navbar {
-    padding-block: .75rem;
+  .header {
+    width: calc(100% - 6rem);
+    padding: 1rem 3rem;
+    gap: 2rem;
   }
-  
-  .navIcons {
-    gap: 4rem;
-  }
-
-  .icon {
-    display: flex;
-    text-align: center;
-  }
-
-  .iconImage {
-    height: 2.5rem;
-    width: 2.5rem;
-  }
-
-  .link {
-    font-size: small;
-    color: black;
-    text-decoration-line: none;
-  }
-
-  .navIcons img {
-    width: auto;
-  }
-
-  .logo {
-    width: 6rem;
-    height: 6rem;
-  }
-
-  .profileIcon {
-    width: 2.2rem !important;
-    height: 2.2rem !important;
-    border-radius: 50%;
-  }
-
-
 }

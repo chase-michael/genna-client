@@ -1,0 +1,19 @@
+.images {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.images img {
+  height: 45%;
+  width: 45%;
+}
+
+.prompt {
+  background-color: #F1F4FA;
+  border-radius: 10px;
+  font-family: 'Nova Mono';
+  padding: 1rem;
+  font-size: 14pt;
+  margin-top: 2rem;
+}

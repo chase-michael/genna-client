@@ -1,16 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from '../../../styles/tool-splash-screen.module.css';
 import style from '../../../styles/create-tool.module.css';
-import ToolHeader from "../ToolHeader";
-import ToolProgressBar from '../ToolProgressBar';
 import ToolSplashScreen from "../ToolSplashScreen";
 import TextToImageStep1 from "./TextToImageStep1"
 import ChooseFinalVersion from "../ChooseFinalVersion";
 import openAIlogo from '../../../icons/openAI.svg';
 import ToolContainer from '../ToolContainer';
+import { validateAuthToken } from '../../../utils/validateAuthToken';
 
 
 function TextToImage() {
+  const navigate = useNavigate();
   const [step, setStep] = useState(0);
   const [prompt, setPrompt] = useState('');
   const [finalVersion, setFinalVersion] = useState(null);
@@ -53,7 +54,7 @@ function TextToImage() {
             The best images are generated when you take your time to make a good prompt.
           </p>
         </ToolSplashScreen>
-        progressPercentageAsNumber = 0.1;
+        progressPercentageAsNumber = 0;
       break;
     case 1:
       currentStep =
@@ -76,16 +77,24 @@ function TextToImage() {
       currentStep = null;
   }
 
+  useEffect(() => {
+    validateAuthToken()
+      .catch(error => {
+        console.error(error);
+        navigate('/sign-in', { state: {
+          notification: 'Sign in to start creating genart',
+          next: '/create'
+        }});
+      })
+  }, []);
+
   return (
     <div className={style.createTool}>
-      <ToolHeader
+      <ToolContainer
         icon={openAIlogo}
         label={'Text to Image'}
-      />
-      <ToolProgressBar 
         fillPercentageAsNumber={progressPercentageAsNumber}
-      />
-      <ToolContainer>
+      >
         {currentStep}
       </ToolContainer>
     </div>

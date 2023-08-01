@@ -1,17 +1,20 @@
-import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useContext, useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import styles from '../styles/authenticate-forms.module.css';
 import UserInputContext from '../contexts/UserInputContext';
+import { AuthContext } from '../contexts/AuthContext';
 import ProfileImageInput from './ProfileImageInput';
 import { validateCreateAccountInputs } from '../utils/authFormValidations';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
-import Footer from './Footer';
-import { useEffect } from 'react';
+import { validateAuthToken } from '../utils/validateAuthToken';
 
 function CreateAccountForm() {
+  const location = useLocation();
+  const next = location.state?.next;
   const { userInput, setUserInput } = useContext(UserInputContext);
+  const { authToken, setAuthToken, setUserData } = useContext(AuthContext);
   const [invalidValues, setInvalidValues] = useState([]);
   const [submitIntents, setSubmitIntents] = useState(0);
   const navigate = useNavigate();
@@ -40,35 +43,37 @@ function CreateAccountForm() {
 
         const { authToken } = response.data;
         localStorage.setItem('authToken', authToken);
+        const validated = await validateAuthToken();
+        if (validated) {
+          setAuthToken(authToken);
+          setUserData(validated);
+        }
         setUserInput({
           displayName: '',
           email: '',
           password: '',
           profileImage: undefined
         })
-        navigate('/');
+        navigate(next ? next : '/');
       }
     } catch (error) {
-        console.log(error.response.data.errors);
+        console.log(error);
       }
     }
   }
 
+  useEffect(() => {
+    if (authToken) {
+      navigate('/');
+    }
+  }, []);
 
   return (
-    <>
-      <div className={styles.banner} />
+    <div className={styles.content}>
       <main className={styles.authenticate}>
-
-        <div className={styles.header}>
-          <img
-            className={styles.gennaHelper}
-            src={'/genna-logo.png'}
-            alt="Genna"
-            onClick={() => navigate('/')}
-          />
+        <h1 className={styles.createAccountHeader}>
           Create Account
-        </div>
+        </h1>
 
         <form
           className={`${styles.form} ${styles.caForm}`}
@@ -77,7 +82,21 @@ function CreateAccountForm() {
         >
 
           <div>
-            <label htmlFor="displayName">Display Name</label>
+            <ProfileImageInput
+              onChange={(img) =>
+                setUserInput({ ...userInput, profileImage: img })
+              }
+            />
+            {invalidValues.find(error => error.profileImage) && 
+              <div className={styles.error}>
+                <FontAwesomeIcon icon={faExclamationCircle}/>
+                {invalidValues.find(error => error.profileImage).profileImage}
+              </div>
+            }
+          </div>
+
+          <div>
+            <label htmlFor="displayName">Name</label>
             <input
               type="text"
               id="displayName"
@@ -137,30 +156,15 @@ function CreateAccountForm() {
               </div>
             }
           </div>
-          
-          <div>
-            <ProfileImageInput
-              onChange={(img) =>
-                setUserInput({ ...userInput, profileImage: img })
-              }
-            />
-            {invalidValues.find(error => error.profileImage) && 
-              <div className={styles.error}>
-                <FontAwesomeIcon icon={faExclamationCircle}/>
-                {invalidValues.find(error => error.profileImage).profileImage}
-              </div>
-            }
-          </div>
 
           <div>
-            <button className={styles.cabutton} type="submit">
+            <button className={`${styles.cabutton} ${styles.caSubmit}`} type="submit">
               Create Account
             </button>
           </div>
         </form>
       </main>
-      <Footer />
-    </>
+    </div>
   );
 }
 
