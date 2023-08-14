@@ -14,7 +14,7 @@ function CreateAccountForm() {
   const location = useLocation();
   const next = location.state?.next;
   const { userInput, setUserInput } = useContext(UserInputContext);
-  const { authToken, setAuthToken, setUserData } = useContext(AuthContext);
+  const { authToken, signIn } = useContext(AuthContext);
   const [invalidValues, setInvalidValues] = useState([]);
   const [submitIntents, setSubmitIntents] = useState(0);
   const navigate = useNavigate();
@@ -42,12 +42,7 @@ function CreateAccountForm() {
           const response = await axios.post('http://localhost:3005/auth/createAccount', formData, config)
 
         const { authToken } = response.data;
-        localStorage.setItem('authToken', authToken);
-        const validated = await validateAuthToken();
-        if (validated) {
-          setAuthToken(authToken);
-          setUserData(validated);
-        }
+        signIn(authToken);
         setUserInput({
           displayName: '',
           email: '',

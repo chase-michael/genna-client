@@ -16,6 +16,9 @@ export function validateAuthToken() {
                 })
                 .catch(error => {
                     reject(new Error(error.message));
+                    console.log(error);
+                    localStorage.removeItem('authToken');
+                    localStorage.removeItem('userData');
                 });
         }
     });

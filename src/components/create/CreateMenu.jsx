@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import styles from '../../styles/create.module.css';
+import styles from '../../styles/create-menu.module.css';
 import openAIlogo from '../../icons/openAI.svg';
-import textileMakerIcon from '../../icons/textileMakerIcon.svg';
 import { validateAuthToken } from '../../utils/validateAuthToken';
 
-function Create() {
+function CreateMenu() {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,9 +25,12 @@ function Create() {
           Create
         </h1>
         <div className={styles.toolsGrid}>
-          <Link className={`${styles.createButton} ${styles.one}`}>
+          <Link 
+            to={'/create/guided-by-ai'}
+            className={`${styles.createButton} ${styles.one}`}
+          >
             <div className={styles.buttonLabel}>
-              <div className={styles.labelHeader}>Guided By AI</div>
+              <div className={styles.labelHeader}>Guided by AI</div>
               <p className={styles.labelDescription}>
                 Follow a guided journey to your next masterpiece.
               </p>
@@ -45,7 +47,7 @@ function Create() {
             <div className={styles.buttonLabel}>
               <div className={styles.labelHeader}>Text to Image</div>
               <p className={styles.labelDescription}>
-                Tell the crystal ball what you'd like to see and watch it come to life.
+                Describe what you'd like to see and watch it come to life.
               </p>
               <div className={styles.openAI}>
                 <img className={styles.buttonIcon} src={openAIlogo} alt="" />
@@ -60,4 +62,4 @@ function Create() {
   );
 };
 
-export default Create;
+export default CreateMenu;

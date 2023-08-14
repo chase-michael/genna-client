@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useParams, useLocation, useNavigate, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import styles from '../styles/artist-profile.module.css';
 import axios from 'axios';
 import { fetchWorksByArtist } from '../utils/fetchWorksByArtist';
 import { fetchSampleArtists } from'../utils/fetchSampleArtists';
-import { getImageColors } from '../utils/getImageColors';
 
 function getRandomSize() {
   const random = Math.random();
@@ -17,7 +16,6 @@ function ArtistProfile() {
   const [artistData, setArtistData] = useState(undefined);
   const [works, setWorks] = useState([]);
   const [artists, setArtists] = useState([]);
-  const [gradientColors, setGradientColors] = useState(undefined);
 
   useEffect(() => {
     axios
@@ -44,12 +42,8 @@ function ArtistProfile() {
       .catch(error => console.log(error));
   }, [params.id]);
 
-
   return (
-    <div
-      className={styles.content}
-      style={gradientColors && { background: `linear-gradient(45deg, ${gradientColors.style1}, ${gradientColors.style2})` }}
-    >
+    <div className={styles.content}>
       {artistData && (
         <>
           <div className={styles.contentCard}>

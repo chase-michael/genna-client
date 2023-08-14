@@ -1,0 +1,90 @@
+.content {
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin-inline: 0.5rem;
+  max-width: 36rem;
+  cursor: default;
+}
+
+.great {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 1rem;
+  padding: 1rem;
+  font-size: 11pt;
+  animation: fadeAndScale 0.5s cubic-bezier(.39,-1.05,.58,1.95) backwards;
+}
+
+.thumbnail {
+  height: 100px;
+  width:100px;
+}
+
+.message {
+  font-size: 14pt;
+  font-weight: 600;
+}
+
+.content form {
+  display: flex;
+  flex-direction: column;
+}
+
+.subtitle {
+  font-size: 11pt;
+  font-weight: 600;
+  padding-top: 1rem;
+  padding-bottom: 0.5rem;
+  padding-left: 0.4rem;
+}
+
+.title {
+  border-radius: 16px;
+  border: none;
+  padding: .65rem;
+  font-size: 12pt;
+}
+
+.title:focus {
+  outline: none;
+}
+
+.button {
+  padding: 0.8rem 1.5rem;
+  margin-top: 1rem;
+  font-weight: bold;
+  align-self: start;
+  color: white;
+  background: rgba(181, 181, 181, 0.2);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1), 0 2px 4px 0 rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  animation: fadeAndScale 0.5s cubic-bezier(.39,-1.05,.58,1.95) backwards;
+}
+
+.button:hover {        
+  background: rgba(199, 199, 199, 0.4);
+}
+
+.button:active {        
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+}
+
+.error {
+  font-size: 11pt;
+  font-weight: 600;
+  color: rgb(252, 208, 215);
+  margin-top: 0.5rem;
+  padding-left: 0.4rem;
+}

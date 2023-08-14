@@ -6,12 +6,13 @@ import Discover from './components/Discover';
 import ArtistProfile from './components/ArtistProfile';
 import Dashboard from './components/Dashboard';
 import UploadWorkForm from './components/dev/UploadWorkForm';
-import Create from './components/create/Create';
-import TextToImage from './components/create/TextToImage/TextToImage';
+import CreateMenu from './components/create/CreateMenu';
+import TextToImageController from './components/create/TextToImageController';
 import SearchResults from './components/SearchResults';
 import LearnMore from './components/LearnMore';
 import SignInForm from './components/SignInForm';
 import CreateAccountForm from './components/CreateAccountForm';
+import GuidedByAiController from './components/create/GuidedByAiController';
 
 const Pages = () => {
   return (
@@ -20,8 +21,9 @@ const Pages = () => {
       <Route path="/:id" element={<ArtistProfile />} />
       <Route path="/work/:id" element={<Work />} />
       <Route path="/sign-in" element={<SignInForm />} />
-      <Route path="/create" element={<Create />} />
-      <Route path="/create/text-to-image" element={<TextToImage />} />
+      <Route path="/create" element={<CreateMenu />} />
+      <Route path="/create/text-to-image" element={<TextToImageController />} />
+      <Route path="/create/guided-by-ai" element={<GuidedByAiController />} />
       <Route path="/create-account" element={<CreateAccountForm />} />
       <Route path="/discover" element={<Discover />} />
       <Route path="/dashboard" element={<Dashboard />} />

@@ -15,7 +15,7 @@ function SignInForm() {
   const notification = location.state?.notification;
   const next = location.state?.next ? location.state.next : '/dashboard';
   const { userInput, setUserInput } = useContext(UserInputContext);
-  const { setAuthToken, setUserData, authToken } = useContext(AuthContext);
+  const { authToken, signIn } = useContext(AuthContext);
   const [invalidValues, setInvalidValues] = useState([]);
   const navigate = useNavigate();
 
@@ -30,12 +30,7 @@ function SignInForm() {
       try {
         const response = await axios.post('http://localhost:3005/auth/signin', { email, password })
         const { authToken } = response.data;
-        localStorage.setItem('authToken', authToken);
-        const validated = await validateAuthToken();
-        if (validated) {
-          setAuthToken(authToken);
-          setUserData(validated);
-        }
+        signIn(authToken);
         setUserInput({
           displayName: '',
           email: '',

@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
-import { useParams, useLocation, useNavigate, Link, useLoaderData } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import styles from '../styles/dashboard.module.css';
 import { fetchWorksByArtist } from '../utils/fetchWorksByArtist';
 import { AuthContext } from '../contexts/AuthContext';
@@ -7,36 +7,68 @@ import { validateAuthToken } from '../utils/validateAuthToken';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExclamationCircle } from '@fortawesome/free-solid-svg-icons';
 import UpdateProfileImageInput from './UpdateProfileImageInput';
+import { validateUpdateFormInputs } from '../utils/validateUpdateFormInputs';
+import { updateProfileImage } from '../utils/updateProfileImage';
+import { updateProfileInformation } from '../utils/updateProfileInformation';
 
 function Dashboard() {
-  const { userData, signOut, authToken } = useContext(AuthContext);
-	const params = useParams();
+  const { userData, signOut, signIn } = useContext(AuthContext);
   const navigate = useNavigate();
-  const location =  useLocation();
-  const [artistData, setArtistData] = useState(undefined);
+  const [artistData, setArtistData] = useState(userData);
   const [works, setWorks] = useState([]);
   const [editProfile, setEditProfile] = useState(false);
   const [updatedInformation, setUpdatedInformation] = useState({
-    displayName: userData.displayName,
-    bio: userData.bio,
-    slug: userData.slug,
+    displayName: userData && userData.displayName,
+    bio: userData && userData.bio,
+    slug: userData && userData.slug,
     profileImage: undefined
   });
   const [invalidValues, setInvalidValues] = useState([]);
 
+  const handleUpdate = async (event) => {
+    event.preventDefault();
 
-  const handleSubmit = () => {
+    try {
+      const result = await validateUpdateFormInputs(artistData, updatedInformation);
 
+      // If there are errors, show errors
+      if (result.length > 0) {
+        setInvalidValues(result);
+        return;
+      }
+
+      // If there is a new profile image, update it.
+      if (updatedInformation.profileImage) {
+        const uploadResult = await updateProfileImage(updatedInformation.profileImage);
+      }
+    
+      const { displayName, bio, slug } = updatedInformation;
+      const updateResult = await updateProfileInformation(displayName, bio, slug)
+      signIn(updateResult.newAuthToken);
+      setEditProfile(false);
+
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   useEffect(() => {
     validateAuthToken()
-      .then(setArtistData(userData))
+      .then(() => {
+        setArtistData(userData);
+        setUpdatedInformation({
+          displayName: userData && userData.displayName,
+          bio: userData && userData.bio,
+          slug: userData && userData.slug,
+          profileImage: undefined
+        });
+      })
       .catch(error => {
         console.error(error);
         navigate('/');
       })
-  }, [authToken]);
+  }, [userData]);
+  
 
   useEffect(() => {
     if (!userData) return;
@@ -52,7 +84,7 @@ function Dashboard() {
         <div className={styles.modal}>
           <form
             className={`${styles.form} ${styles.caForm}`}
-            onSubmit={handleSubmit}
+            onSubmit={handleUpdate}
             noValidate  
           >
             <div className={styles.formContent}>
@@ -82,7 +114,7 @@ function Dashboard() {
                   }}
                 />
                 {invalidValues.find(error => error.displayName) && (
-                  <div className={styles.error}>
+                  <div className={styles.nameError}>
                     <FontAwesomeIcon icon={faExclamationCircle}/>
                     {invalidValues.find(error => error.displayName).displayName}
                   </div>
@@ -100,7 +132,7 @@ function Dashboard() {
                     setUpdatedInformation({ ...updatedInformation, bio: e.target.value })
                   }
                 />
-                {invalidValues.find(error => error.email) && 
+                {invalidValues.find(error => error.bio) && 
                   <div className={styles.error}>
                     <FontAwesomeIcon icon={faExclamationCircle}/>
                     {invalidValues.find(error => error.bio).bio}
@@ -119,7 +151,7 @@ function Dashboard() {
                     }
                   />
                 </div>
-                {invalidValues.find(error => error.email) && 
+                {invalidValues.find(error => error.slug) && 
                   <div className={styles.error}>
                     <FontAwesomeIcon icon={faExclamationCircle}/>
                     {invalidValues.find(error => error.slug).slug}
@@ -132,7 +164,16 @@ function Dashboard() {
               </button>
               <div
                 className={styles.cancel}
-                onClick={() => setEditProfile(false)}
+                onClick={() => {
+                  setEditProfile(false);
+                  setUpdatedInformation({
+                    displayName: userData.displayName,
+                    bio: userData.bio,
+                    slug: userData.slug,
+                    profileImage: undefined
+                  });
+                  setInvalidValues([]);
+                }}
               >
                 Cancel
               </div>
@@ -196,7 +237,10 @@ function Dashboard() {
           
           <div
             className={`${styles.button} ${styles.signOutButton}`}
-            onClick={signOut}
+            onClick={() => {
+              signOut();
+              navigate('/');
+            }}
           >
             Sign Out
           </div>

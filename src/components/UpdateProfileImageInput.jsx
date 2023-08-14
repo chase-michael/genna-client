@@ -62,7 +62,7 @@ function ProfileImageInput({ onChange, currentProfileImage }) {
         </div>
       </div>
       {error && 
-        <div className={styles.error}>
+        <div className={styles.nameError}>
           <FontAwesomeIcon icon={faExclamationCircle}/>
           {error}
         </div>

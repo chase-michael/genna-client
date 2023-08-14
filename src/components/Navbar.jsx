@@ -8,7 +8,7 @@ import SearchBar from './SearchBar';
 import { AuthContext } from '../contexts/AuthContext';
 
 function Navbar() {
-  const { authToken, userData, signOut } = useContext(AuthContext);
+  const { authToken, userData } = useContext(AuthContext);
   const location = useLocation();
   const [search, setSearch] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
