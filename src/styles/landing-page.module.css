@@ -2,7 +2,7 @@
   margin-top: 0;
   height: 100vh;
   width: 100wv;
-  background-image: linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)), url("../../public/home-wizard.jpg");
+  background-image: linear-gradient(rgba(0,0,0,.3),rgba(0,0,0,.3)), url("%PUBLIC_URL%/home-wizard.jpg");
   background-position: center;
   background-size: cover;
   color: white;
