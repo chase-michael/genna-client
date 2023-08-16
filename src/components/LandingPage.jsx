@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom';
 import styles from '../styles/landing-page.module.css';
+import Navbar from './Navbar';
 
 function LandingPage() {
 
   return (
     <div className={styles.home}>
+      <Navbar />
       <div className={styles.heroText}>
         <Link
           to="/discover"

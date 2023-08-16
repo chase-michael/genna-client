@@ -19,12 +19,7 @@ function App() {
   const { authToken } = useContext(AuthContext);
   
   return (
-    <BrowserRouter>
-      <Navbar key={authToken} />
-      <MainContent>
         <Pages />
-      </MainContent>
-    </BrowserRouter>
   );
 }
 
