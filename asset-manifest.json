@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/genna-client/static/css/main.4657ac90.css",
-    "main.js": "/genna-client/static/js/main.345f2aab.js",
+    "main.js": "/genna-client/static/js/main.df2dce40.js",
     "static/media/home-wizard.jpg": "/genna-client/static/media/home-wizard.5d75ae4b05eb53f68254.jpg",
     "static/media/northStar.svg": "/genna-client/static/media/northStar.e82ffe3bff2b1695b60d16d4283479c2.svg",
     "static/media/bender.svg": "/genna-client/static/media/bender.2a1e207f950f24f6fa6b431ee470e26e.svg",
@@ -10,10 +10,10 @@
     "static/media/searchBarMagnifyingGlass.svg": "/genna-client/static/media/searchBarMagnifyingGlass.f5d3174c0b72b0b0b5afdb9a3d45eb6a.svg",
     "static/media/searchIcon.svg": "/genna-client/static/media/searchIcon.3f8ee7eefb527cb0d927d728702f5346.svg",
     "main.4657ac90.css.map": "/genna-client/static/css/main.4657ac90.css.map",
-    "main.345f2aab.js.map": "/genna-client/static/js/main.345f2aab.js.map"
+    "main.df2dce40.js.map": "/genna-client/static/js/main.df2dce40.js.map"
   },
   "entrypoints": [
     "static/css/main.4657ac90.css",
-    "static/js/main.345f2aab.js"
+    "static/js/main.df2dce40.js"
   ]
 }
