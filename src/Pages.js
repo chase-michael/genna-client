@@ -19,7 +19,7 @@ const Pages = () => {
     <Router
       basename="/genna-client"
     >
-      <Route path="/" element={<LandingPage />} />
+      <Route exact path="/" element={<LandingPage />} />
       <Route path="/:id" element={<ArtistProfile />} />
       <Route path="/work/:id" element={<Work />} />
       <Route path="/sign-in" element={<SignInForm />} />
