@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Router } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import Work from './components/Work';
 import Discover from './components/Discover';
@@ -16,7 +16,9 @@ import GuidedByAiController from './components/create/GuidedByAiController';
 
 const Pages = () => {
   return (
-    <Routes>
+    <Router
+      basename="/genna-client"
+    >
       <Route path="/" element={<LandingPage />} />
       <Route path="/:id" element={<ArtistProfile />} />
       <Route path="/work/:id" element={<Work />} />
@@ -30,7 +32,7 @@ const Pages = () => {
       <Route path="/devUploadWork" element={<UploadWorkForm />} />
       <Route path="/search/:query" element={<SearchResults />} />
       <Route path="/learn-more" element={<LearnMore />} />
-    </Routes>
+    </Router>
   )
 }
 
