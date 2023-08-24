@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.css": "/genna-client/static/css/main.e38a40a8.css",
-    "main.js": "/genna-client/static/js/main.d7a0a665.js",
-    "static/media/home-wizard.jpg": "/genna-client/static/media/home-wizard.5d75ae4b05eb53f68254.jpg",
-    "static/media/northStar.svg": "/genna-client/static/media/northStar.e82ffe3bff2b1695b60d16d4283479c2.svg",
-    "static/media/bender.svg": "/genna-client/static/media/bender.2a1e207f950f24f6fa6b431ee470e26e.svg",
-    "static/media/openAI.svg": "/genna-client/static/media/openAI.12cff9f64d3ec1551adc2e030fc27d2f.svg",
-    "index.html": "/genna-client/index.html",
-    "static/media/searchBarMagnifyingGlass.svg": "/genna-client/static/media/searchBarMagnifyingGlass.f5d3174c0b72b0b0b5afdb9a3d45eb6a.svg",
-    "static/media/searchIcon.svg": "/genna-client/static/media/searchIcon.3f8ee7eefb527cb0d927d728702f5346.svg",
-    "main.e38a40a8.css.map": "/genna-client/static/css/main.e38a40a8.css.map",
-    "main.d7a0a665.js.map": "/genna-client/static/js/main.d7a0a665.js.map"
+    "main.css": "/static/css/main.54a452ed.css",
+    "main.js": "/static/js/main.e8dbb1fe.js",
+    "static/media/home-wizard.jpg": "/static/media/home-wizard.5d75ae4b05eb53f68254.jpg",
+    "static/media/northStar.svg": "/static/media/northStar.e82ffe3bff2b1695b60d16d4283479c2.svg",
+    "static/media/bender.svg": "/static/media/bender.2a1e207f950f24f6fa6b431ee470e26e.svg",
+    "static/media/openAI.svg": "/static/media/openAI.12cff9f64d3ec1551adc2e030fc27d2f.svg",
+    "index.html": "/index.html",
+    "static/media/searchBarMagnifyingGlass.svg": "/static/media/searchBarMagnifyingGlass.f5d3174c0b72b0b0b5afdb9a3d45eb6a.svg",
+    "static/media/searchIcon.svg": "/static/media/searchIcon.3f8ee7eefb527cb0d927d728702f5346.svg",
+    "main.54a452ed.css.map": "/static/css/main.54a452ed.css.map",
+    "main.e8dbb1fe.js.map": "/static/js/main.e8dbb1fe.js.map"
   },
   "entrypoints": [
-    "static/css/main.e38a40a8.css",
-    "static/js/main.d7a0a665.js"
+    "static/css/main.54a452ed.css",
+    "static/js/main.e8dbb1fe.js"
   ]
 }
