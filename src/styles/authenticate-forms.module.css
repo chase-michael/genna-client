@@ -111,7 +111,8 @@
 }
 
 .caLink {
-  color: white;
+  color: #ffcdd9 !important;
+  filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.3));
   text-decoration: none;
   font-weight: 600;
   padding: 0.8rem 1rem;
@@ -157,6 +158,7 @@
   font-size: small;
   color: #ffcdd9;
   margin-top: 2%;
+  filter: drop-shadow(0 0 2px rgb(0 0 0 / 0.3));
 }
 
 

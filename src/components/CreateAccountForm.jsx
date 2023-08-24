@@ -39,7 +39,7 @@ function CreateAccountForm() {
           const config = {     
               headers: { 'content-type': 'multipart/form-data' }
           }
-          const response = await axios.post('http://localhost:3005/auth/createAccount', formData, config)
+          const response = await axios.post('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/auth/createAccount', formData, config)
 
         const { authToken } = response.data;
         signIn(authToken);

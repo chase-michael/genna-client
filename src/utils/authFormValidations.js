@@ -55,7 +55,7 @@ export async function validateCreateAccountInputs(displayName, email, password, 
         } else {
             try {
                 const response =
-                    await axios.get('http://localhost:3005/auth/displayNameInUse', { params: { displayName } });
+                    await axios.get('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/auth/displayNameInUse', { params: { displayName } });
 
                     if (response.data.inUse) {
                         errors.push ({ displayName: DISPLAY_NAME_IN_USE })
@@ -74,7 +74,7 @@ export async function validateCreateAccountInputs(displayName, email, password, 
         } else {
             try {
                 const response =
-                    await axios.get('http://localhost:3005/auth/emailInUse', { params: { email } });
+                    await axios.get('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/auth/emailInUse', { params: { email } });
 
                     if (response.data.inUse) {
                         errors.push ({ email: EMAIL_IN_USE })

@@ -19,7 +19,7 @@ function ArtistProfile() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3005/search/getArtistBySlug', { params: { slug: params.id } })
+      .get('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/search/getArtistBySlug', { params: { slug: params.id } })
       .then(response => {
         setArtistData(response.data);
       })

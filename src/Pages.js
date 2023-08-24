@@ -1,10 +1,10 @@
 import React from 'react';
-import { Route, Router } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
 import Work from './components/Work';
 import Discover from './components/Discover';
-import ArtistProfile from './components/ArtistProfile';
 import Dashboard from './components/Dashboard';
+import ArtistProfile from './components/ArtistProfile';
 import UploadWorkForm from './components/dev/UploadWorkForm';
 import CreateMenu from './components/create/CreateMenu';
 import TextToImageController from './components/create/TextToImageController';
@@ -16,11 +16,9 @@ import GuidedByAiController from './components/create/GuidedByAiController';
 
 const Pages = () => {
   return (
-    <Router
-      basename="/genna-client"
-    >
-      <Route exact path="/" element={<LandingPage />} />
-      <Route path="/:id" element={<ArtistProfile />} />
+    <Routes>
+      <Route path="/" element={<LandingPage />} />
+      <Route path="/artist/:id" element={<ArtistProfile />} />
       <Route path="/work/:id" element={<Work />} />
       <Route path="/sign-in" element={<SignInForm />} />
       <Route path="/create" element={<CreateMenu />} />
@@ -32,7 +30,7 @@ const Pages = () => {
       <Route path="/devUploadWork" element={<UploadWorkForm />} />
       <Route path="/search/:query" element={<SearchResults />} />
       <Route path="/learn-more" element={<LearnMore />} />
-    </Router>
+    </Routes>
   )
 }
 

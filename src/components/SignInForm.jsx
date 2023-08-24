@@ -28,7 +28,7 @@ function SignInForm() {
   
     if (result.length == 0) {
       try {
-        const response = await axios.post('http://localhost:3005/auth/signin', { email, password })
+        const response = await axios.post('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/auth/signin', { email, password })
         const { authToken } = response.data;
         signIn(authToken);
         setUserInput({
@@ -39,6 +39,7 @@ function SignInForm() {
         })
         navigate(next ? next : '/');
       } catch (error) {
+        console.log(error);
         setInvalidValues(error.response.data.errors);
       }
     }
@@ -109,9 +110,6 @@ function SignInForm() {
             }
           </div>
           
-          <Link to="/forgot-password" className={styles.forgotPasswordLink}>
-            Forgot Password?
-          </Link>
           <div className={styles.signInCreateRow}>
             <button type="submit">Sign In</button>
             <Link

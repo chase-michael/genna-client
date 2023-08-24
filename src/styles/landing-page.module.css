@@ -29,6 +29,12 @@
   text-shadow: 0 -2px 8px, 0 0 2px, 0 0 10px #b6b6b6, 0 2px 3px #000;
 }
 
+.action:hover {
+  color: #ffffff;
+  animation: none;
+  text-shadow: 0 -2px 8px, 0 0 15px, 0 0 10px #b6b6b6, 0 2px 3px #000;
+}
+
 .arrow {
   font-size: 24pt;
 }

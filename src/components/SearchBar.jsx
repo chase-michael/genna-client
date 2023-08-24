@@ -38,12 +38,12 @@ const SearchBar = ({ close }) => {
   const fetchResults = async (searchTerm) => {
     setLoading(true);
     try {
-      const response = await axios.get('http://localhost:3005/search', { params: { term: searchTerm } })
+      const response = await axios.get('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/search', { params: { term: searchTerm } })
       const formattedSearchResults = [];
       response.data.artists.forEach((artist) => {
         formattedSearchResults.push({
           resultType: 'artist',
-          url: `/${artist.slug}`,
+          url: `/artist/${artist.slug}`,
           icon: artist.profileImage,
           label: artist.displayName
         })

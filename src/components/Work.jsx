@@ -11,7 +11,7 @@ function Work() {
   const params = useParams();
 
   useEffect(() => {
-    axios.get('http://localhost:3005/search/getWorkById', { params: { id: params.id } })
+    axios.get('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/search/getWorkById', { params: { id: params.id } })
       .then(workResponse => {
         setWorkData(workResponse.data);
       })
@@ -20,7 +20,7 @@ function Work() {
 
   useEffect(() => {
     if (!workData) return;
-    axios.get('http://localhost:3005/search/getArtistById', { params: { artistId: workData.artistId } })
+    axios.get('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/search/getArtistById', { params: { artistId: workData.artistId } })
       .then(artistResponse => {
         setArtistData(artistResponse.data);
       })
@@ -57,7 +57,7 @@ function Work() {
             <div className={styles.productInformation}>
               <div className={styles.title}>{workData.title}</div>
               <Link
-                to={`/${artistData.slug}`}
+                to={`/artist/${artistData.slug}`}
                 state={{ previous: workData.title }}
                 className={styles.artistName}
               >

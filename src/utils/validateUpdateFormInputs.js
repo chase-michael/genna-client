@@ -21,7 +21,7 @@ export async function validateUpdateFormInputs(artistData, userInputs) {
     } else {
       try {
         const nameToCheck = userInputs.displayName;
-        const response = await axios.get('http://localhost:3005/auth/displayNameInUse', { params: { displayName: nameToCheck } });
+        const response = await axios.get('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/auth/displayNameInUse', { params: { displayName: nameToCheck } });
         if (response.data.inUse) {
           errors.push ({ displayName: DISPLAY_NAME_IN_USE })
         }
@@ -44,7 +44,7 @@ export async function validateUpdateFormInputs(artistData, userInputs) {
       try {
         const slugToCheck = userInputs.slug;
         const response =
-          await axios.get('http://localhost:3005/auth/slugInUse', { params: { slug: slugToCheck } });
+          await axios.get('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/auth/slugInUse', { params: { slug: slugToCheck } });
           if (response.data.inUse) {
             errors.push({ slug: SLUG_IN_USE })
           }

@@ -26,7 +26,7 @@ function UploadWorkForm() {
     }
 
     try {
-      const response = await axios.post('http://localhost:3005/upload/uploadWork', formData, config);
+      const response = await axios.post('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/upload/uploadWork', formData, config);
       setWorkDetails({
         title: '',
         description: '',

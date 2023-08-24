@@ -11,7 +11,7 @@ export async function updateProfileImage(profileImage) {
     const config = {     
       headers: { 'content-type': 'multipart/form-data' }
     }
-    const response = await axios.post('http://localhost:3005/upload/updateProfileImage', formData, config)
+    const response = await axios.post('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/upload/updateProfileImage', formData, config)
     return response;
   } catch (error) {
     console.log(error)

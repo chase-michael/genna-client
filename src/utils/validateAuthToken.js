@@ -9,7 +9,7 @@ export function validateAuthToken() {
             }
             reject(new Error('in validateAuthToken: No token found'));
         } else {
-            axios.post('http://localhost:3005/auth/validateAuthToken', { authToken })
+            axios.post('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/auth/validateAuthToken', { authToken })
                 .then(response => {
                     localStorage.setItem('userData', JSON.stringify(response.data));
                     resolve(response.data);

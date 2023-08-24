@@ -203,7 +203,7 @@ function Dashboard() {
                 Edit Profile
               </div>
               <Link
-                to={userData && `/${userData.slug}`}
+                to={userData && `/artist/${userData.slug}`}
                 className={styles.button}
               >
                 View as Public

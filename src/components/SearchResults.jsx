@@ -28,13 +28,13 @@ function SearchResults() {
 
   const fetchResults = async () => {
     try {
-      const response = await axios.get('http://localhost:3005/search', { params: { term: query } })
+      const response = await axios.get('https://stark-forest-35371-d6c7fd4f4fa3.herokuapp.com/search', { params: { term: query } })
       const artists = [];
       const works = [];
       response.data.artists.forEach((artist) => {
         artists.push({
           resultType: 'artist',
-          url: `/${artist.slug}`,
+          url: `/artist/${artist.slug}`,
           icon: artist.profileImage,
           label: artist.displayName
         })
