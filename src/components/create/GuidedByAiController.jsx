@@ -16,10 +16,6 @@ function GuidedByAiController() {
   const [gptResponse, setGptResponse] = useState(null);
   const [finalVersion, setFinalVersion] = useState(null);
 
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
   const handleStart = () => {
     goToNextStep()
     getGuidedByAiOptions()

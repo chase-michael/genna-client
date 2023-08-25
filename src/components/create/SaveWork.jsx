@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../../styles/save-work.module.css';
 import { saveFinalWork } from '../../utils/saveFinalWork';
@@ -7,6 +7,10 @@ function SaveWork({ work }) {
   const navigate = useNavigate();
   const [input, setInput] = useState('');
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();

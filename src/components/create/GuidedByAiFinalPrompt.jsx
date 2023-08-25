@@ -2,6 +2,10 @@ import styles from '../../styles/guided-by-ai-final-prompt.module.css'
 
 function GuidedByAiFinalPrompt({ prompt, restart, finish }) {
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
   <div className={styles.content}>
     <div className={styles.subtitle}>

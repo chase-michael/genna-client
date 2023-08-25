@@ -2,6 +2,10 @@ import styles from '../../styles/guided-by-ai-choice.module.css'
 
 function GuidedByAiChoice({ currentPrompt, stepNumber, category, options, onSelect, previous }) {
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className={styles.choice}>
       <div className={styles.stepChip}>
