@@ -141,7 +141,7 @@ function Dashboard() {
 
 
                 <div className={styles.slugRow}>
-                  <label htmlFor="slug">genna.one /</label>
+                  <label htmlFor="slug">URL </label>
                   <input
                     type="text"
                     id="slug"

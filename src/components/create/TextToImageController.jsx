@@ -13,6 +13,10 @@ function TextToImageController() {
   const [prompt, setPrompt] = useState('');
   const [finalVersion, setFinalVersion] = useState(null);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
 
   const goToNextStep = () => {
     setStep(step + 1);
