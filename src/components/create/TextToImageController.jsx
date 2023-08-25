@@ -12,7 +12,6 @@ function TextToImageController() {
   const [step, setStep] = useState(0);
   const [prompt, setPrompt] = useState('');
   const [finalVersion, setFinalVersion] = useState(null);
-  console.log("TTI render");
 
 
   const goToNextStep = () => {

@@ -66,7 +66,7 @@ function ArtistProfile() {
               <div className={styles.grid}>
                 {works.toReversed().map((work, index) => (
                   <Link 
-                    to={`http://localhost:3000/work/${work._id}`}
+                    to={`https://genna.one/work/${work._id}`}
                     key={index} 
                     className={`${styles.card} ${styles[`size-${getRandomSize()}`]}`}
                     style={{backgroundImage: `url(${work.url})`}}
@@ -89,7 +89,7 @@ function ArtistProfile() {
             <div className={styles.artistGrid}>
               {artists && artists.map((artist, index) => 
                 <Link
-                  to={`/${artist.slug}`}
+                  to={`/artist/${artist.slug}`}
                   key={index}
                   className={styles.artistGridItem}
                 >

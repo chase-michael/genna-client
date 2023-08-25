@@ -17,6 +17,7 @@
 .images img {
   animation: fadeAndScale 0.5s cubic-bezier(.39,-1.05,.58,1.95) backwards;
   cursor: pointer;
+  border-radius: 16px;
 }
 
 .images img:last-child {

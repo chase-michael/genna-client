@@ -25,7 +25,7 @@ function Discover() {
         <div className={styles.grid}>
           {works.map((work, index) => (
             <Link 
-              to={`http://localhost:3000/work/${work._id}`}
+              to={`https://genna.one/work/${work._id}`}
               key={index} 
               className={`${styles.card} ${styles[`size-${getRandomSize()}`]}`}
               style={{backgroundImage: `url(${work.url})`}}

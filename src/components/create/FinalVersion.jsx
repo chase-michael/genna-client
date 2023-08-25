@@ -5,7 +5,6 @@ import Loading from '../Loading';
 
 function FinalVersion({ prompt, onSelect }) {
   const [images, setImages] = useState([]);
-  console.log("FinalVersion render");
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -14,7 +13,6 @@ function FinalVersion({ prompt, onSelect }) {
   useEffect(() => {
     getImageGenerations(Array.isArray(prompt) ? prompt.join('') : prompt)
       .then(response => {
-        console.log(response.data);
         setImages(response.data);
       })
       .catch(error => console.log(error));

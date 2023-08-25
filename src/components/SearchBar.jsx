@@ -94,7 +94,7 @@ const SearchBar = ({ close }) => {
           <BiX
             className={styles.clearSearchBarIcon}
             size="1.5em"
-            color="#B4B4B4"
+            color="#333333"
             onClick={() => {
               setSearchFinished(false);
               setInputValue('');

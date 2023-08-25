@@ -218,14 +218,14 @@ function Dashboard() {
               </div>
               <div className={styles.grid}>
                 <Link 
-                  to={'http://localhost:3000/create'}
+                  to={'https://genna.one/create'}
                   className={`${styles.card} ${styles[`size-1`]} ${styles.button} ${styles.createIcon}`}
                 >
                   +
                 </Link>
                 {works.toReversed().map((work, index) => (
                   <Link 
-                    to={`http://localhost:3000/work/${work._id}`}
+                    to={`https://genna.one/work/${work._id}`}
                     key={index} 
                     className={`${styles.card} ${styles[`size-1`]}`}
                     style={{backgroundImage: `url(${work.url})`}}
