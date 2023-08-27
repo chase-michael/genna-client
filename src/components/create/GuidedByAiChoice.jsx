@@ -1,4 +1,5 @@
 import styles from '../../styles/guided-by-ai-choice.module.css'
+import { useEffect } from 'react';
 
 function GuidedByAiChoice({ currentPrompt, stepNumber, category, options, onSelect, previous }) {
 

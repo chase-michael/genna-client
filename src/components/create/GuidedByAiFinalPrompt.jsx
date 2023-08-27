@@ -1,4 +1,5 @@
 import styles from '../../styles/guided-by-ai-final-prompt.module.css'
+import { useEffect } from 'react';
 
 function GuidedByAiFinalPrompt({ prompt, restart, finish }) {
 
