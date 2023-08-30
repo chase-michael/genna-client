@@ -3,7 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import styles from '../styles/search-results.module.css';
 import axios from 'axios';
 
-const Result = ({ resultType, url, icon, label, key }) => {
+const Result = ({ resultType, url, icon, label }) => {
 
   return (
     <Link
@@ -12,7 +12,6 @@ const Result = ({ resultType, url, icon, label, key }) => {
     >
       <img
         src={icon}
-        key={key}
         alt=''
         className={(resultType === 'artist') ? styles.resultProfileIcon : styles.resultIcon}
       />
@@ -61,11 +60,11 @@ function SearchResults() {
       <div className={`${styles.card} ${styles.glass}`}>
         <h1>Results for {params.query}</h1>
         <div className={styles.resultsGrid}>
-          {results && results.artists.map(result =>
-            <Result key={result.id} {...result} />
+          {results && results.artists.map((result, index) =>
+            <Result key={index} {...result} />
           )}
-          {results && results.works.map(result =>
-            <Result key={result.id} {...result} />
+          {results && results.works.map((result, index) =>
+            <Result key={index} {...result} />
           )}
         </div>
       </div>

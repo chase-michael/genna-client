@@ -7,7 +7,7 @@ import { BiX } from 'react-icons/bi';
 import bender from '../icons/bender.svg'
 import searchBarMagnifyingGlass from '../icons/searchBarMagnifyingGlass.svg'
 
-const SearchResult = ({ resultType, url, icon, label, key, close }) => {
+const SearchResult = ({ resultType, url, icon, label, close }) => {
   const navigate = useNavigate();
 
   return (
@@ -20,7 +20,6 @@ const SearchResult = ({ resultType, url, icon, label, key, close }) => {
     >
       <img
         src={icon}
-        key={key}
         alt=''
         className={(resultType === 'artist') ? styles.resultProfileIcon : styles.resultIcon}
       />
@@ -104,8 +103,8 @@ const SearchBar = ({ close }) => {
         {!loading && (
           inputValue !== '' && results.length > 0 ? (
             <div className={styles.searchResults}>
-              {results.slice(0, 4).map(result => (
-                <SearchResult key={result.id} {...result} close={close} />
+              {results.slice(0, 4).map((result, index) => (
+                <SearchResult key={index} {...result} close={close} />
               ))}
               {results.length > 4 && (
                 <Link

@@ -58,6 +58,7 @@
 .resultIcon {
   max-width: 2.5rem;
   max-height: 2.5rem;
+  border-radius: 12px;
 }
 
 .resultText {
